@@ -1,12 +1,9 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-        <div class="sidebar-logo-brand">
-            <span class="logo-mark">WS</span>
-            <span class="logo-text">WebStack</span>
+        <div class="sidebar-logo-brand" aria-label="My Navigation">
+            <span class="logo-mark" aria-hidden="true">MN</span>
+            <span class="logo-text">My Navigation</span>
         </div>
-        <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="折叠/展开侧边栏">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-        </button>
     </div>
     <div class="sidebar-divider"></div>
     <nav class="sidebar-nav" aria-label="分类导航">
@@ -24,34 +21,21 @@
                 {{ end }}
             </ul>
         {{ else }}
-            <div class="nav-section-label">{{ $group.name }}</div>
+            <div class="nav-section-label" data-label="{{ $group.name }}">{{ $group.name }}</div>
             <ul class="nav-list">
-                <li class="nav-group">
-                    <a href="#" class="nav-item has-sub" data-label="{{ $group.name }}">
-                        <i class="{{ $group.icon }}" aria-hidden="true"></i>
-                        <span class="nav-text">{{ $group.name }}</span>
-                        <i class="fa fa-angle-down nav-chevron" aria-hidden="true"></i>
+                {{ range $cat := $group.categories }}
+                <li>
+                    <a href="#{{ $cat.id }}" class="nav-item nav-sub-item smooth" data-label="{{ $cat.name }}">
+                        <i class="{{ $cat.icon }}" aria-hidden="true"></i>
+                        <span class="nav-text">{{ $cat.name }}</span>
                     </a>
-                    <div class="nav-sub-wrapper">
-                        <ul class="nav-sub">
-                            {{ range $cat := $group.categories }}
-                            <li>
-                                <a href="#{{ $cat.id }}" class="smooth">
-                                    {{ $cat.name }}
-                                </a>
-                            </li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                    <div class="nav-flyout" aria-hidden="true">
-                        <div class="nav-flyout-title">{{ $group.name }}</div>
-                        {{ range $cat := $group.categories }}
-                        <a href="#{{ $cat.id }}">{{ $cat.name }}</a>
-                        {{ end }}
-                    </div>
                 </li>
+                {{ end }}
             </ul>
         {{ end }}
         {{ end }}
     </nav>
+    <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="折叠/展开侧边栏" aria-expanded="false">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </button>
 </aside>

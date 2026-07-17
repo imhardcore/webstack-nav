@@ -8,16 +8,11 @@
         if (!toggle || !sidebar) return;
 
         toggle.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
+            const collapsed = sidebar.classList.toggle('collapsed');
+            toggle.setAttribute('aria-expanded', collapsed ? 'true' : 'false');
             // 移动端：展开/收起
             if (window.innerWidth <= 768) {
                 sidebar.classList.toggle('expanded');
-            }
-            // 折叠态下收起所有已展开的子菜单，避免展开时残留
-            if (sidebar.classList.contains('collapsed')) {
-                sidebar.querySelectorAll('.nav-group.expanded').forEach(function(g) {
-                    g.classList.remove('expanded');
-                });
             }
         });
 
@@ -29,24 +24,6 @@
                 !e.target.closest('#sidebar-collapse')) {
                 sidebar.classList.remove('expanded');
             }
-        });
-    }
-
-    // 折叠组展开/收起
-    function initNavGroups() {
-        document.querySelectorAll('.nav-group > .has-sub').forEach(function(item) {
-            item.addEventListener('click', function(e) {
-                const sidebar = document.getElementById('sidebar');
-                // 折叠态：点击直接展开 sidebar，不操作子菜单
-                if (sidebar && sidebar.classList.contains('collapsed')) {
-                    e.preventDefault();
-                    sidebar.classList.remove('collapsed');
-                    return;
-                }
-                e.preventDefault();
-                const group = item.closest('.nav-group');
-                if (group) group.classList.toggle('expanded');
-            });
         });
     }
 
@@ -137,7 +114,6 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         initSidebarToggle();
-        initNavGroups();
         initSmoothScroll();
         initScrollSpy();
         initGoTop();

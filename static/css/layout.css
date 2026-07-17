@@ -38,12 +38,13 @@
   flex-shrink: 0;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
   max-height: calc(100vh - var(--toolbar-height) - var(--space-md) * 2);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: visible 让 hover 浮层能溢出侧边栏；内部 nav 单独滚动 */
+  overflow: visible;
   transition: width var(--t-medium);
   will-change: width;
   z-index: 50;
@@ -56,7 +57,10 @@
 .sidebar-nav {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 8px 12px 12px;
+  /* 内部滚动容器不影响外部 flyout 溢出 */
+  border-radius: inherit;
 }
 
 /* 内容区：独立滚动 */
