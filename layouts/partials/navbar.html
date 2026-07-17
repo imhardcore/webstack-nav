@@ -5,38 +5,6 @@
                 <i class="fa-bars"></i>
             </a>
         </li>
-        <li class="dropdown hover-line language-switcher">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ .Site.BaseURL }}images/flags/{{ if eq .Language.Lang "cn" }}flag-cn.png{{ else }}flag-us.png{{ end }}" alt="flag" />
-                <span>{{ .Language.LanguageName }}</span>
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu languages">
-                {{ if eq .Language.Lang "cn" }}
-                <li>
-                    <a href="{{ .Site.BaseURL }}en/">
-                        <img src="{{ .Site.BaseURL }}images/flags/flag-us.png" alt="flag-us" /> English
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="{{ .Site.BaseURL }}">
-                        <img src="{{ .Site.BaseURL }}images/flags/flag-cn.png" alt="flag-cn" /> Chinese
-                    </a>
-                </li>
-                {{ else }}
-                <li class="active">
-                    <a href="{{ .Site.BaseURL }}en/">
-                        <img src="{{ .Site.BaseURL }}images/flags/flag-us.png" alt="flag-us" /> English
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ .Site.BaseURL }}">
-                        <img src="{{ .Site.BaseURL }}images/flags/flag-cn.png" alt="flag-cn" /> Chinese
-                    </a>
-                </li>
-                {{ end }}
-            </ul>
-        </li>
     </ul>
     <ul class="user-info-menu right-links list-inline list-unstyled">
         <li class="hidden-sm hidden-xs">
@@ -46,7 +14,7 @@
         </li>
         <li class="hidden-sm hidden-xs">
             <a href="https://github.com/{{ .Site.Params.githubRepo }}" target="_blank">
-                <i class="fa-github"></i> {{ with T "github" }}{{ . }}{{ else }}GitHub{{ end }}
+                <i class="fa-github"></i> GitHub
             </a>
         </li>
     </ul>

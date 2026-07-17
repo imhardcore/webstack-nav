@@ -56,9 +56,7 @@
         if (matches.length === 0) {
             const noResults = document.createElement('p');
             noResults.style.cssText = 'text-align:center;padding:40px;color:#999;';
-            noResults.textContent = document.documentElement.lang === 'zh' || document.documentElement.lang === 'zh-cn'
-                ? '未找到相关网站'
-                : 'No sites found';
+            noResults.textContent = '未找到相关网站';
             results.appendChild(noResults);
             return;
         }

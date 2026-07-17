@@ -87,21 +87,11 @@ collections:
             fields:
               - { label: "组ID", name: "id", widget: "string" }
               - { label: "图标", name: "icon", widget: "string" }
-              - label: "名称"
-                name: "name"
-                widget: "object"
-                fields:
-                  - { label: "中文", name: "cn", widget: "string" }
-                  - { label: "英文", name: "en", widget: "string" }
+              - { label: "名称", name: "name", widget: "string" }
               - label: "子分类"
                 name: "categories"
                 widget: "list"
                 fields:
                   - { label: "分类ID", name: "id", widget: "string" }
                   - { label: "图标", name: "icon", widget: "string", required: false }
-                  - label: "名称"
-                    name: "name"
-                    widget: "object"
-                    fields:
-                      - { label: "中文", name: "cn", widget: "string" }
-                      - { label: "英文", name: "en", widget: "string" }
+                  - { label: "名称", name: "name", widget: "string" }

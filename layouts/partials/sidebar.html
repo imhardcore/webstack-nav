@@ -21,7 +21,6 @@
         </header>
 
         <ul id="main-menu" class="main-menu">
-            {{ $lang := .Language.Lang }}
             {{ range $group := .Site.Data.categories.groups }}
                 {{ if eq $group.id "top" }}
                     <!-- 顶级分类直接显示 -->
@@ -29,7 +28,7 @@
                     <li>
                         <a href="#{{ $cat.id }}" class="smooth">
                             <i class="{{ $cat.icon }}"></i>
-                            <span class="title">{{ index $cat.name $lang }}</span>
+                            <span class="title">{{ $cat.name }}</span>
                         </a>
                     </li>
                     {{ end }}
@@ -38,13 +37,13 @@
                     <li>
                         <a href="#{{ $group.id }}" class="smooth has-sub">
                             <i class="{{ $group.icon }}"></i>
-                            <span class="title">{{ index $group.name $lang }}</span>
+                            <span class="title">{{ $group.name }}</span>
                         </a>
                         <ul>
                             {{ range $cat := $group.categories }}
                             <li>
                                 <a href="#{{ $cat.id }}" class="smooth">
-                                    <span class="title">{{ index $cat.name $lang }}</span>
+                                    <span class="title">{{ $cat.name }}</span>
                                 </a>
                             </li>
                             {{ end }}

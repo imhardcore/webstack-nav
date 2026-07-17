@@ -1,18 +1,8 @@
 baseURL = "https://imhardcore.github.io/webstack-nav/"
 languageCode = "zh-cn"
 title = "WebStack - 设计师网址导航"
-defaultContentLanguage = "cn"
-
-# 多语言配置
-[languages]
-  [languages.cn]
-    weight = 1
-    languageName = "Chinese"
-    languagedirection = "ltr"
-  [languages.en]
-    weight = 2
-    languageName = "English"
-    languagedirection = "ltr"
+defaultContentLanguage = "zh"
+disableLanguages = ["en"]
 
 # 参数配置
 [params]
