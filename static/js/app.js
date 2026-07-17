@@ -4,7 +4,7 @@
     // 侧边栏折叠
     function initSidebarToggle() {
         const sidebar = document.getElementById('sidebar');
-        const toggle = sidebar?.querySelector('.sidebar-toggle');
+        const toggle = document.getElementById('sidebar-collapse');
         if (!toggle || !sidebar) return;
 
         toggle.addEventListener('click', function() {
@@ -25,7 +25,8 @@
         document.addEventListener('click', function(e) {
             if (window.innerWidth <= 768 &&
                 !sidebar.contains(e.target) &&
-                !e.target.closest('.sidebar-toggle')) {
+                e.target.id !== 'sidebar-collapse' &&
+                !e.target.closest('#sidebar-collapse')) {
                 sidebar.classList.remove('expanded');
             }
         });
@@ -47,24 +48,6 @@
                 if (group) group.classList.toggle('expanded');
             });
         });
-
-        // 折叠态：为 nav-item 添加 title 属性实现原生 tooltip
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) {
-            const updateTitles = function() {
-                sidebar.querySelectorAll('.nav-item').forEach(function(item) {
-                    const text = item.querySelector('.nav-text')?.textContent || '';
-                    if (sidebar.classList.contains('collapsed')) {
-                        item.setAttribute('title', text);
-                    } else {
-                        item.removeAttribute('title');
-                    }
-                });
-            };
-            updateTitles();
-            const toggle = sidebar.querySelector('.sidebar-toggle');
-            toggle?.addEventListener('click', updateTitles);
-        }
     }
 
     // 平滑滚动到锚点
