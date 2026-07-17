@@ -16,7 +16,7 @@
                     <a href="#" class="nav-item has-sub">
                         <i class="{{ $group.icon }}" aria-hidden="true"></i>
                         <span class="nav-text">{{ $group.name }}</span>
-                        <i class="fa-angle-down nav-chevron" aria-hidden="true"></i>
+                        <i class="fa fa-angle-down nav-chevron" aria-hidden="true"></i>
                     </a>
                     <ul class="nav-sub">
                         {{ range $cat := $group.categories }}
@@ -33,6 +33,6 @@
         </ul>
     </nav>
     <button class="sidebar-toggle" aria-label="折叠/展开侧边栏">
-        <i class="fa-angle-left" aria-hidden="true"></i>
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
     </button>
 </aside>

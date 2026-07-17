@@ -20,7 +20,7 @@
     function updateIcon(theme) {
         const icon = document.querySelector('#theme-toggle i');
         if (icon) {
-            icon.className = theme === 'dark' ? 'fa-moon-o' : 'fa-sun-o';
+            icon.className = theme === 'dark' ? 'fa fa-moon-o' : 'fa fa-sun-o';
         }
     }
 
