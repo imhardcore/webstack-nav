@@ -41,7 +41,8 @@ jobs:
           TZ: Asia/Shanghai
         run: |
           hugo \
-            --minify
+            --minify \
+            --baseURL "https://imhardcore.github.io/webstack-nav/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
