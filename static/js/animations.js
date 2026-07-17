@@ -17,10 +17,10 @@
 
     // === 1. 卡片交错进入动画 ===
     function animateCards() {
-        const cards = document.querySelectorAll('.col-sm-3');
+        const cards = document.querySelectorAll('.site-card');
         cards.forEach((card, index) => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(28px) scale(0.96)';
+            card.style.transform = 'translateY(16px) scale(0.96)';
             card.style.transition = `opacity ${CONFIG.cardAnimationDuration}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${CONFIG.cardAnimationDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
 
             setTimeout(() => {
@@ -44,10 +44,8 @@
             inputGroup.classList.remove('focused');
         });
 
-        // 搜索时卡片过滤动画
-        const originalSearch = window.search;
         searchInput.addEventListener('input', function() {
-            const visibleCards = document.querySelectorAll('.col-sm-3:not([style*="display: none"])');
+            const visibleCards = document.querySelectorAll('.site-card:not([style*="display: none"])');
             visibleCards.forEach((card, i) => {
                 card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
                 card.style.opacity = '0.6';
@@ -69,7 +67,6 @@
             });
         });
 
-        // 子菜单展开动画
         const hasSubItems = document.querySelectorAll('.has-sub > a');
         hasSubItems.forEach(item => {
             item.addEventListener('click', function() {
@@ -120,15 +117,10 @@
         let mouseY = window.innerHeight / 2;
         let currentX = mouseX;
         let currentY = mouseY;
-        let isMoving = false;
-        let moveTimeout;
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX - 250;
             mouseY = e.clientY - 250;
-            isMoving = true;
-            clearTimeout(moveTimeout);
-            moveTimeout = setTimeout(() => { isMoving = false; }, 100);
         });
 
         function animate() {
@@ -140,13 +132,49 @@
         animate();
     }
 
-    // === 6. 卡片 Hover 微光效果 ===
-    function initCardShimmer() {
-        const cards = document.querySelectorAll('.xe-widget.xe-conversations.box2');
+    // === 6. 跟随鼠标的 URL Tooltip ===
+    function initMouseTooltip() {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'mouse-tooltip';
+        document.body.appendChild(tooltip);
+
+        let tooltipX = 0;
+        let tooltipY = 0;
+        let targetUrl = '';
+        let isVisible = false;
+
+        document.addEventListener('mousemove', (e) => {
+            tooltipX = e.clientX + 16;
+            tooltipY = e.clientY + 16;
+
+            if (isVisible) {
+                tooltip.style.left = tooltipX + 'px';
+                tooltip.style.top = tooltipY + 'px';
+            }
+        });
+
+        const cards = document.querySelectorAll('.site-card .card-inner');
         cards.forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                targetUrl = this.getAttribute('data-url') || '';
+                if (targetUrl) {
+                    tooltip.textContent = targetUrl;
+                    tooltip.classList.add('visible');
+                    tooltip.style.left = tooltipX + 'px';
+                    tooltip.style.top = tooltipY + 'px';
+                    isVisible = true;
+                }
             });
+
+            card.addEventListener('mouseleave', function() {
+                tooltip.classList.remove('visible');
+                isVisible = false;
+            });
+        });
+
+        tooltip.addEventListener('mouseenter', () => {
+            tooltip.classList.remove('visible');
+            isVisible = false;
         });
     }
 
@@ -154,7 +182,6 @@
     function initPageLoadAnimation() {
         const sidebar = document.querySelector('.sidebar-menu');
         const navbar = document.querySelector('.navbar');
-        const mainContent = document.querySelector('.main-content');
 
         if (sidebar) {
             sidebar.style.opacity = '0';
@@ -203,7 +230,7 @@
             initSidebarEnhancement();
             initScrollReveal();
             initAmbientGlow();
-            initCardShimmer();
+            initMouseTooltip();
             initSmoothScroll();
         }, 200);
     });
