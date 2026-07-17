@@ -287,11 +287,14 @@ html, body, .page-body {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 10px 11px;
+  padding: 12px;
   cursor: pointer;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  height: 88px;
+  display: flex;
+  flex-direction: column;
 }
 
 .site-card .card-inner::before {
@@ -322,7 +325,8 @@ html, body, .page-body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
 }
 
 .site-card .card-icon {
@@ -335,7 +339,7 @@ html, body, .page-body {
 }
 
 .site-card .card-title {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
   white-space: nowrap;
@@ -344,11 +348,12 @@ html, body, .page-body {
   flex: 1;
 }
 
-/* 卡片描述：下方左对齐 */
+/* 卡片描述：下方左对齐，统一2行高度 */
 .site-card .card-desc {
   font-size: 12px;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.5;
+  height: 36px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
