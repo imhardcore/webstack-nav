@@ -15,9 +15,19 @@
         sidebarHoverDelay: 80
     };
 
+    // === 减少动效偏好检测 ===
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // === 1. 卡片交错进入动画 ===
     function animateCards() {
         const cards = document.querySelectorAll('.site-card');
+        if (prefersReducedMotion) {
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'none';
+            });
+            return;
+        }
         cards.forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(16px) scale(0.96)';
@@ -45,6 +55,7 @@
         });
 
         searchInput.addEventListener('input', function() {
+            if (prefersReducedMotion) return;
             const visibleCards = document.querySelectorAll('.site-card:not([style*="display: none"])');
             visibleCards.forEach((card, i) => {
                 card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
@@ -62,7 +73,7 @@
         menuItems.forEach(item => {
             item.addEventListener('mouseenter', function() {
                 if (!this.parentElement.classList.contains('active')) {
-                    this.style.transition = 'all 0.2s ease';
+                    this.style.transition = 'background-color 0.2s ease, color 0.2s ease';
                 }
             });
         });
@@ -72,11 +83,12 @@
             item.addEventListener('click', function() {
                 const sub = this.nextElementSibling;
                 if (sub && sub.tagName === 'UL') {
+                    if (prefersReducedMotion) return;
                     const subItems = sub.querySelectorAll('li');
                     subItems.forEach((li, i) => {
                         li.style.opacity = '0';
                         li.style.transform = 'translateX(-8px)';
-                        li.style.transition = `all 0.25s ease ${i * 30}ms`;
+                        li.style.transition = `opacity 0.25s ease ${i * 30}ms, transform 0.25s ease ${i * 30}ms`;
                         setTimeout(() => {
                             li.style.opacity = '1';
                             li.style.transform = 'translateX(0)';
@@ -109,6 +121,7 @@
 
     // === 5. 鼠标跟随环境光晕 ===
     function initAmbientGlow() {
+        if (prefersReducedMotion) return;
         const glow = document.createElement('div');
         glow.className = 'ambient-glow';
         document.body.appendChild(glow);
@@ -180,6 +193,7 @@
 
     // === 7. 页面加载完成动画 ===
     function initPageLoadAnimation() {
+        if (prefersReducedMotion) return;
         const sidebar = document.querySelector('.sidebar-menu');
         const navbar = document.querySelector('.navbar');
 
@@ -212,7 +226,7 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth',
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
                         block: 'start'
                     });
                 }

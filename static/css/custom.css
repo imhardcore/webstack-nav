@@ -34,8 +34,9 @@
   --radius-sm: 8px;
   --radius-xs: 6px;
   --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  --transition-medium: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
 }
 
 /* === 全局基础 === */
@@ -80,7 +81,7 @@ html, body, .page-body {
   color: var(--text-secondary) !important;
   border-radius: var(--radius-sm);
   padding: 10px 14px;
-  transition: var(--transition);
+  transition: var(--transition-medium);
   font-size: 13px;
   font-weight: 500;
   position: relative;
@@ -169,7 +170,7 @@ html, body, .page-body {
 .navbar.user-info-navbar .user-info-menu > li > a {
   color: var(--text-muted) !important;
   padding: 18px 14px;
-  transition: var(--transition);
+  transition: var(--transition-medium);
   border-radius: var(--radius-sm);
 }
 
@@ -188,7 +189,7 @@ html, body, .page-body {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: var(--transition);
+  transition: var(--transition-medium);
 }
 
 .search-container .input-group:focus-within,
@@ -222,7 +223,7 @@ html, body, .page-body {
 /* === 分类标题 === */
 .text-gray {
   color: var(--text-secondary) !important;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -289,7 +290,7 @@ html, body, .page-body {
   border-radius: var(--radius-md);
   padding: 12px;
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition-medium);
   position: relative;
   overflow: hidden;
   height: 88px;
@@ -434,7 +435,7 @@ footer.main-footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition);
+  transition: var(--transition-medium);
   box-shadow: var(--shadow-card);
 }
 
@@ -456,7 +457,7 @@ footer.main-footer {
 }
 
 #theme-toggle i {
-  transition: var(--transition);
+  transition: var(--transition-medium);
 }
 
 /* === 搜索结果区域 === */

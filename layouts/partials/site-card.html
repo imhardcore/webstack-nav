@@ -1,17 +1,20 @@
 <div class="site-card">
-    <div class="card-inner"
-         onclick='window.open("{{ .url }}","_blank")'
-         data-url="{{ .url }}"
-         data-title="{{ .title }}">
+    <a class="card-inner"
+       href="{{ .url }}"
+       target="_blank"
+       rel="noopener"
+       data-url="{{ .url }}"
+       data-title="{{ .title }}">
         <div class="card-header">
             <img data-src="{{ $.Site.BaseURL }}images/logos/{{ .logo }}"
                  src="{{ $.Site.BaseURL }}images/logos/default.png"
                  class="lozad card-icon"
                  width="28"
                  height="28"
+                 loading="lazy"
                  alt="{{ .title }}">
             <span class="card-title">{{ .title }}</span>
         </div>
         <div class="card-desc">{{ .description }}</div>
-    </div>
+    </a>
 </div>

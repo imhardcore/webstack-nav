@@ -7,7 +7,7 @@
     {{ range $cat := $group.categories }}
         {{ $catSites := where $sites "category" $cat.id }}
         {{ if gt (len $catSites) 0 }}
-        <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="{{ $cat.id }}"></i>{{ $cat.name }}</h4>
+        <h2 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="{{ $cat.id }}" aria-hidden="true"></i>{{ $cat.name }}</h2>
         <div class="cards-grid">
             {{ range $site := $catSites }}
                 {{ partial "site-card.html" $site }}
