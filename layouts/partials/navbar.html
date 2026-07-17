@@ -46,7 +46,7 @@
         </li>
         <li class="hidden-sm hidden-xs">
             <a href="https://github.com/{{ .Site.Params.githubRepo }}" target="_blank">
-                <i class="fa-github"></i> {{ T "github" }}
+                <i class="fa-github"></i> {{ with T "github" }}{{ . }}{{ else }}GitHub{{ end }}
             </a>
         </li>
     </ul>

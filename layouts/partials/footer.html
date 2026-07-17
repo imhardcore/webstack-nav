@@ -3,7 +3,7 @@
         <div class="footer-text">
             &copy; 2017 - {{ now.Format "2006" }}
             <a href="{{ "about" | relLangURL }}"><strong>WebStack</strong></a>
-            {{ T "poweredBy" }}
+            {{ with T "poweredBy" }}{{ . }}{{ else }}Powered by Hugo{{ end }}
         </div>
         <div class="go-up">
             <a href="#" rel="go-top">
