@@ -6,7 +6,7 @@ backend:
   app_id: "Ov23lixZTVyBVemtni13"
 
 media_folder: "static/images/logos"
-public_folder: "/images/logos"
+public_folder: "/webstack-nav/images/logos"
 
 collections:
   - name: "sites"
