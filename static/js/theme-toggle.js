@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    // 初始化主题
+    // 初始化主题 — 默认深色模式
     function initTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
         }
@@ -34,10 +34,9 @@
             });
         }
 
-        // 更新初始图标
-        const isDark = document.body.classList.contains('dark-mode');
+        // 默认图标为太阳（深色模式）
         const icon = document.querySelector('#theme-toggle i');
-        if (icon && isDark) {
+        if (icon) {
             icon.className = 'fa-sun-o';
         }
     });

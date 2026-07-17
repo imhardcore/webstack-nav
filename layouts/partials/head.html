@@ -2,15 +2,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="author" content="{{ .Site.Params.author }}" />
-<title>{{ with T "title" }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+<title>{{ .Site.Title }}</title>
 <meta name="keywords" content="UI设计,UI设计素材,设计导航,网址导航,设计资源,创意导航,创意网站导航,设计师网址大全,设计素材大全,设计师导航,UI设计资源,优秀UI设计欣赏,产品经理网址导航,交互设计师网址导航">
-<meta name="description" content="{{ with T "description" }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="description" content="{{ .Site.Params.description }}">
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.png">
 
 <!-- Fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- CSS -->
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/fonts/linecons/css/linecons.css">
@@ -31,11 +33,11 @@
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ with T "title" }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}">
-<meta property="og:description" content="{{ with T "description" }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta property="og:site_name" content="{{ with T "title" }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}">
+<meta property="og:title" content="{{ .Site.Title }}">
+<meta property="og:description" content="{{ .Site.Params.description }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ with T "title" }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}">
-<meta name="twitter:description" content="{{ with T "description" }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="twitter:title" content="{{ .Site.Title }}">
+<meta name="twitter:description" content="{{ .Site.Params.description }}">
