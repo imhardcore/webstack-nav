@@ -9,48 +9,50 @@ media_folder: "static/images/logos"
 public_folder: "/images/logos"
 
 collections:
-  # 网址管理
   - name: "sites"
     label: "网址管理"
     delete: false
-    file: "data/sites.json"
-    description: "所有导航网址数据"
-    fields:
-      - label: "网址列表"
+    files:
+      - file: "data/sites.json"
+        label: "网址列表"
         name: "sites"
-        widget: "list"
         fields:
-          - { label: "网站名称", name: "title", widget: "string" }
-          - { label: "网址", name: "url", widget: "string" }
-          - { label: "描述", name: "description", widget: "string" }
-          - { label: "图标文件名", name: "logo", widget: "string", default: "default.png" }
-          - { label: "分类", name: "category", widget: "select", options: ["常用推荐", "社区资讯", "发现产品", "界面灵感", "网页灵感", "图标素材", "LOGO设计", "平面素材", "UI资源", "Sketch资源", "字体资源", "Mockup", "摄影图库", "PPT资源", "图形创意", "界面设计", "交互动效", "在线配色", "在线工具", "Chrome插件", "设计规范", "视频教程", "设计文章", "设计电台", "交互设计", "UED团队"] }
-          - { label: "分类组", name: "group", widget: "select", options: ["top", "inspiration", "resources", "tools", "tutorial"] }
+          - label: "网址数据"
+            name: "sites"
+            widget: "list"
+            fields:
+              - { label: "网站名称", name: "title", widget: "string" }
+              - { label: "网址", name: "url", widget: "string" }
+              - { label: "描述", name: "description", widget: "string" }
+              - { label: "图标文件名", name: "logo", widget: "string", default: "default.png" }
+              - { label: "分类", name: "category", widget: "select", options: ["常用推荐", "社区资讯", "发现产品", "界面灵感", "网页灵感", "图标素材", "LOGO设计", "平面素材", "UI资源", "Sketch资源", "字体资源", "Mockup", "摄影图库", "PPT资源", "图形创意", "界面设计", "交互动效", "在线配色", "在线工具", "Chrome插件", "设计规范", "视频教程", "设计文章", "设计电台", "交互设计", "UED团队"] }
+              - { label: "分类组", name: "group", widget: "select", options: ["top", "inspiration", "resources", "tools", "tutorial"] }
 
-  # 分类管理
   - name: "categories"
     label: "分类管理"
     delete: false
-    file: "data/categories.json"
-    description: "分类结构定义"
-    fields:
-      - label: "分类组"
-        name: "groups"
-        widget: "list"
+    files:
+      - file: "data/categories.json"
+        label: "分类结构"
+        name: "categories"
         fields:
-          - { label: "组ID", name: "id", widget: "string" }
-          - { label: "图标", name: "icon", widget: "string" }
-          - { label: "名称", name: "name", widget: "object", fields: [
-            { label: "中文", name: "cn", widget: "string" },
-            { label: "英文", name: "en", widget: "string" }
-          ]}
-          - label: "子分类"
-            name: "categories"
+          - label: "分类组"
+            name: "groups"
             widget: "list"
             fields:
-              - { label: "分类ID", name: "id", widget: "string" }
-              - { label: "图标", name: "icon", widget: "string", required: false }
+              - { label: "组ID", name: "id", widget: "string" }
+              - { label: "图标", name: "icon", widget: "string" }
               - { label: "名称", name: "name", widget: "object", fields: [
                 { label: "中文", name: "cn", widget: "string" },
                 { label: "英文", name: "en", widget: "string" }
               ]}
+              - label: "子分类"
+                name: "categories"
+                widget: "list"
+                fields:
+                  - { label: "分类ID", name: "id", widget: "string" }
+                  - { label: "图标", name: "icon", widget: "string", required: false }
+                  - { label: "名称", name: "name", widget: "object", fields: [
+                    { label: "中文", name: "cn", widget: "string" },
+                    { label: "英文", name: "en", widget: "string" }
+                  ]}
