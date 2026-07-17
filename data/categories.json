@@ -1,65 +1,15 @@
 {
   "groups": [
     {
-      "id": "top",
-      "icon": "linecons-star",
-      "name": "顶级",
+      "id": "nav",
+      "icon": "fa fa-compass",
+      "name": "导航",
       "categories": [
-        { "id": "常用推荐", "icon": "linecons-star", "name": "常用推荐" },
-        { "id": "推荐", "icon": "linecons-star", "name": "推荐" },
-        { "id": "社区资讯", "icon": "linecons-doc", "name": "社区资讯" },
-        { "id": "UED团队", "icon": "linecons-user", "name": "UED团队" }
-      ]
-    },
-    {
-      "id": "inspiration",
-      "icon": "linecons-lightbulb",
-      "name": "灵感采集",
-      "categories": [
-        { "id": "发现产品", "icon": "", "name": "发现产品" },
-        { "id": "界面灵感", "icon": "", "name": "界面灵感" },
-        { "id": "网页灵感", "icon": "", "name": "网页灵感" }
-      ]
-    },
-    {
-      "id": "resources",
-      "icon": "linecons-thumbs-up",
-      "name": "素材资源",
-      "categories": [
-        { "id": "图标素材", "icon": "", "name": "图标素材" },
-        { "id": "LOGO设计", "icon": "", "name": "LOGO设计" },
-        { "id": "平面素材", "icon": "", "name": "平面素材" },
-        { "id": "UI资源", "icon": "", "name": "UI资源" },
-        { "id": "Sketch资源", "icon": "", "name": "Sketch资源" },
-        { "id": "字体资源", "icon": "", "name": "字体资源" },
-        { "id": "Mockup", "icon": "", "name": "Mockup" },
-        { "id": "摄影图库", "icon": "", "name": "摄影图库" },
-        { "id": "PPT资源", "icon": "", "name": "PPT资源" }
-      ]
-    },
-    {
-      "id": "tools",
-      "icon": "linecons-diamond",
-      "name": "常用工具",
-      "categories": [
-        { "id": "图形创意", "icon": "", "name": "图形创意" },
-        { "id": "界面设计", "icon": "", "name": "界面设计" },
-        { "id": "交互动效", "icon": "", "name": "交互动效" },
-        { "id": "在线配色", "icon": "", "name": "在线配色" },
-        { "id": "在线工具", "icon": "", "name": "在线工具" },
-        { "id": "Chrome插件", "icon": "", "name": "Chrome插件" }
-      ]
-    },
-    {
-      "id": "tutorial",
-      "icon": "linecons-pencil",
-      "name": "学习教程",
-      "categories": [
-        { "id": "设计规范", "icon": "", "name": "设计规范" },
-        { "id": "视频教程", "icon": "", "name": "视频教程" },
-        { "id": "设计文章", "icon": "", "name": "设计文章" },
-        { "id": "设计电台", "icon": "", "name": "设计电台" },
-        { "id": "交互设计", "icon": "", "name": "交互设计" }
+        { "id": "AI", "icon": "fa fa-magic", "name": "AI" },
+        { "id": "GFW", "icon": "fa fa-globe", "name": "GFW" },
+        { "id": "SillyTavern", "icon": "fa fa-comments", "name": "SillyTavern" },
+        { "id": "design", "icon": "fa fa-paint-brush", "name": "设计资源" },
+        { "id": "movie", "icon": "fa fa-film", "name": "影视资源" }
       ]
     }
   ]
