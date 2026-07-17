@@ -249,8 +249,9 @@ html, body, .page-body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  height: auto;
-  min-height: 80px;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 0 12px 0 !important;
 }
 
 /* 卡片顶部微光 */
@@ -271,7 +272,7 @@ html, body, .page-body {
   background-color: var(--bg-card-hover) !important;
   border-color: var(--border-hover) !important;
   box-shadow: var(--shadow-card-hover) !important;
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
 .xe-widget.xe-conversations.box2:hover::before {
@@ -283,47 +284,97 @@ html, body, .page-body {
   background-color: var(--bg-card) !important;
 }
 
-/* 卡片内部布局 */
+/* 卡片内部 — 清除原始 float/absolute 布局，使用 flex */
 .xe-comment-entry {
-  padding: 16px 18px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  padding: 11px 14px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 11px !important;
+  position: relative !important;
+  height: auto !important;
 }
 
+/* 图片容器 */
 .xe-user-img {
-  flex-shrink: 0;
+  display: block !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
 }
 
 .xe-user-img img {
   border-radius: var(--radius-xs) !important;
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  display: block !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
+/* 清除 img-circle 的 padding */
+.img-circle {
+  padding: 0 !important;
+}
+
+/* 文字区域 — 清除 absolute 定位 */
 .xe-comment {
-  min-width: 0;
-  flex: 1;
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  top: auto !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  overflow: hidden;
+  padding-top: 2px;
 }
 
+.xe-comment p {
+  margin: 0 !important;
+}
+
+/* 标题 */
 .xe-user-name {
-  margin-bottom: 2px;
+  margin-bottom: 2px !important;
+  display: block !important;
+  text-decoration: none !important;
 }
 
 .xe-user-name strong {
   color: var(--text-primary) !important;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 13px !important;
+  font-weight: 600 !important;
   letter-spacing: 0.01em;
 }
 
+/* 描述 — 单行截断 */
 .overflowClip_2 {
   color: var(--text-muted) !important;
-  font-size: 11px;
-  line-height: 1.5;
-  margin: 0;
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin: 0 !important;
+}
+
+/* URL 行 */
+.site-url {
+  color: var(--text-muted);
+  font-size: 10px;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  opacity: 0.45;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* tooltip 深色 */

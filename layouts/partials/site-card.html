@@ -20,6 +20,7 @@
                     <strong>{{ .title }}</strong>
                 </a>
                 <p class="overflowClip_2">{{ .description }}</p>
+                <div class="site-url">{{ .url | replaceRE "^https?://" "" | replaceRE "/$" "" }}</div>
             </div>
         </div>
     </div>
