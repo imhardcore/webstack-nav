@@ -528,15 +528,18 @@ footer.main-footer {
 }
 
 /* === 滚动进入动画类 === */
-.reveal-item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+/* 滚动触发显示（仅在允许动效时隐藏，默认可见） */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
 
-.reveal-item.revealed {
-  opacity: 1;
-  transform: translateY(0);
+  .reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* === 加载动画 === */
@@ -588,4 +591,30 @@ footer.main-footer {
 ::selection {
   background: var(--accent-green-dim);
   color: var(--text-primary);
+}
+
+/* === 页面加载动画（CSS 驱动，JS 失败也不会隐藏内容） === */
+@media (prefers-reduced-motion: no-preference) {
+  .sidebar-menu {
+    animation: sb-enter 0.5s ease both;
+  }
+  .navbar.user-info-navbar {
+    animation: nav-enter 0.4s ease 0.1s both;
+  }
+  .site-card {
+    animation: card-enter 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+  }
+  @keyframes sb-enter {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes nav-enter {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes card-enter {
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
 }

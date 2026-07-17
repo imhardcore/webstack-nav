@@ -18,25 +18,12 @@
     // === 减少动效偏好检测 ===
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // === 1. 卡片交错进入动画 ===
+    // === 1. 卡片交错进入动画（CSS 驱动，JS 只设置索引变量） ===
     function animateCards() {
         const cards = document.querySelectorAll('.site-card');
-        if (prefersReducedMotion) {
-            cards.forEach(card => {
-                card.style.opacity = '1';
-                card.style.transform = 'none';
-            });
-            return;
-        }
+        if (prefersReducedMotion) return;
         cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(16px) scale(0.96)';
-            card.style.transition = `opacity ${CONFIG.cardAnimationDuration}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${CONFIG.cardAnimationDuration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
-
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0) scale(1)';
-            }, 120 + index * CONFIG.cardStaggerDelay);
+            card.style.setProperty('--i', index);
         });
     }
 
@@ -101,6 +88,13 @@
 
     // === 4. 滚动触发显示 ===
     function initScrollReveal() {
+        if (prefersReducedMotion) return;
+
+        const items = document.querySelectorAll('.text-gray');
+        if (!('IntersectionObserver' in window)) {
+            return; // 不支持 IO 时不动隐藏元素（CSS media query 也不会隐藏）
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -113,10 +107,15 @@
             rootMargin: '0px 0px -30px 0px'
         });
 
-        document.querySelectorAll('.text-gray').forEach(el => {
+        items.forEach(el => {
             el.classList.add('reveal-item');
             observer.observe(el);
         });
+
+        // 安全超时：3 秒后强制显示所有元素，防止 IO 失败导致内容永久隐藏
+        setTimeout(() => {
+            items.forEach(el => el.classList.add('revealed'));
+        }, 3000);
     }
 
     // === 5. 鼠标跟随环境光晕 ===
@@ -191,31 +190,10 @@
         });
     }
 
-    // === 7. 页面加载完成动画 ===
+    // === 7. 页面加载动画（已改为 CSS 驱动，无需 JS 操作） ===
     function initPageLoadAnimation() {
-        if (prefersReducedMotion) return;
-        const sidebar = document.querySelector('.sidebar-menu');
-        const navbar = document.querySelector('.navbar');
-
-        if (sidebar) {
-            sidebar.style.opacity = '0';
-            sidebar.style.transform = 'translateX(-20px)';
-            sidebar.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            setTimeout(() => {
-                sidebar.style.opacity = '1';
-                sidebar.style.transform = 'translateX(0)';
-            }, 50);
-        }
-
-        if (navbar) {
-            navbar.style.opacity = '0';
-            navbar.style.transform = 'translateY(-10px)';
-            navbar.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            setTimeout(() => {
-                navbar.style.opacity = '1';
-                navbar.style.transform = 'translateY(0)';
-            }, 150);
-        }
+        // sidebar/navbar/cards 的进入动画由 CSS @keyframes 驱动
+        // 即使 JS 失败，内容也默认可见（opacity:1）
     }
 
     // === 8. 平滑滚动增强 ===
