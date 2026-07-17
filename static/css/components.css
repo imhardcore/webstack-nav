@@ -94,11 +94,11 @@
 }
 
 /* Logo Mark: 绝对定位固定位置不动 */
-/* 展开态: left 20px (sidebar 280px, mark ~32px, 靠左)
-   折叠态: left 20px = (80-32)/2.4 ≈ 居中位置 */
+/* 折叠态 sidebar 80px, mark 约 32px, 居中 left = (80-32)/2 = 24px */
+/* 展开态和折叠态都保持 left:24px，位置完全不动 */
 .sidebar-logo-brand .logo-mark {
   position: absolute;
-  left: 20px;
+  left: 24px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
@@ -109,12 +109,6 @@
   background-color: var(--bg-elevated);
   line-height: 1;
   z-index: 2;
-  /* 折叠态 80px, mark 约 32px, 居中 left = (80-32)/2 = 24px */
-  transition: left var(--t-medium);
-}
-
-.sidebar.collapsed .logo-mark {
-  left: 24px;
 }
 
 .logo-mark-accent {
@@ -131,9 +125,11 @@
 
 /* Logo Text: 用 max-width 实现挤压效果 */
 .sidebar-logo-brand .logo-text {
-  position: relative;
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1;
-  margin-left: 48px;
   font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
@@ -142,7 +138,7 @@
   overflow: hidden;
   max-width: 200px;
   opacity: 1;
-  transition: max-width var(--t-medium), margin-left var(--t-medium), opacity 0.15s ease;
+  transition: max-width var(--t-medium), opacity 0.15s ease;
 }
 
 .logo-text-accent {
@@ -152,15 +148,14 @@
 
 .sidebar.collapsed .logo-text {
   max-width: 0;
-  margin-left: 0;
   opacity: 0;
 }
 
-/* === 折叠按钮：绝对定位在侧边栏底部右边框上 === */
+/* === 折叠按钮：绝对定位在侧边栏顶部右边框上，对齐 Logo === */
 .sidebar-collapse-btn {
   position: absolute;
   right: -14px;
-  bottom: 20px;
+  top: 32px;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -171,7 +166,7 @@
   justify-content: center;
   color: var(--text-tertiary);
   flex-shrink: 0;
-  z-index: 60;
+  z-index: 100;
   cursor: pointer;
   transition: background var(--t-fast), color var(--t-fast), transform var(--t-medium);
 }
@@ -225,7 +220,7 @@
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
-  transition: background var(--t-fast), color var(--t-fast), padding var(--t-medium);
+  transition: background var(--t-fast), color var(--t-fast);
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -248,11 +243,11 @@
 }
 
 /* 图标：绝对定位固定位置不动 */
-/* 展开态: left 14px (padding-left)
-   折叠态: left 31px = (80-18)/2 居中 */
+/* 折叠态 sidebar 80px, 图标 18px, 居中 left = (80-18)/2 = 31px */
+/* 展开态和折叠态都保持 left:31px，位置完全不动 */
 .nav-item > i:first-child {
   position: absolute;
-  left: 14px;
+  left: 31px;
   top: 50%;
   transform: translateY(-50%);
   width: var(--icon-size);
@@ -264,30 +259,26 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: left var(--t-medium);
-}
-
-.sidebar.collapsed .nav-item > i:first-child {
-  left: 31px;
 }
 
 /* 文字：用 max-width 实现挤压效果 */
 .nav-text {
-  position: relative;
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1;
-  margin-left: 30px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
   opacity: 1;
-  transition: max-width var(--t-medium), margin-left var(--t-medium), opacity 0.15s ease;
+  transition: max-width var(--t-medium), opacity 0.15s ease;
 }
 
 /* === 折叠态：文字挤压消失 === */
 .sidebar.collapsed .nav-text {
   max-width: 0;
-  margin-left: 0;
   opacity: 0;
 }
 
@@ -318,10 +309,8 @@
 @media (prefers-reduced-motion: reduce) {
   .sidebar-collapse-btn i,
   .nav-item,
-  .nav-item > i:first-child,
   .nav-text,
   .sidebar,
-  .logo-mark,
   .logo-text {
     transition: none;
   }
