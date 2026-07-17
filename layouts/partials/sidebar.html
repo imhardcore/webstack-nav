@@ -1,39 +1,28 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
         <div class="sidebar-logo-brand" aria-label="My Navigation">
-            <span class="logo-mark" aria-hidden="true">MN</span>
-            <span class="logo-text">My Navigation</span>
+            <span class="logo-mark" aria-hidden="true">
+                <span class="logo-mark-accent">M</span><span class="logo-mark-rest">N</span>
+            </span>
+            <span class="logo-text">
+                <span class="logo-text-accent">My</span>&nbsp;Navigation
+            </span>
         </div>
     </div>
     <div class="sidebar-divider"></div>
     <nav class="sidebar-nav" aria-label="分类导航">
-        {{ range $group := .Site.Data.categories.groups }}
-        {{ if eq $group.id "top" }}
-            <div class="nav-section-label">常用</div>
-            <ul class="nav-list">
+        <ul class="nav-list">
+            {{ range $group := .Site.Data.categories.groups }}
                 {{ range $cat := $group.categories }}
                 <li>
                     <a href="#{{ $cat.id }}" class="nav-item smooth" data-label="{{ $cat.name }}">
-                        <i class="{{ $cat.icon }}" aria-hidden="true"></i>
+                        <i class="{{ if $cat.icon }}{{ $cat.icon }}{{ else }}{{ $group.icon }}{{ end }}" aria-hidden="true"></i>
                         <span class="nav-text">{{ $cat.name }}</span>
                     </a>
                 </li>
                 {{ end }}
-            </ul>
-        {{ else }}
-            <div class="nav-section-label" data-label="{{ $group.name }}">{{ $group.name }}</div>
-            <ul class="nav-list">
-                {{ range $cat := $group.categories }}
-                <li>
-                    <a href="#{{ $cat.id }}" class="nav-item nav-sub-item smooth" data-label="{{ $cat.name }}">
-                        <i class="{{ $cat.icon }}" aria-hidden="true"></i>
-                        <span class="nav-text">{{ $cat.name }}</span>
-                    </a>
-                </li>
-                {{ end }}
-            </ul>
-        {{ end }}
-        {{ end }}
+            {{ end }}
+        </ul>
     </nav>
     <button class="sidebar-collapse-btn" id="sidebar-collapse" aria-label="折叠/展开侧边栏" aria-expanded="false">
         <i class="fa fa-angle-left" aria-hidden="true"></i>

@@ -94,16 +94,24 @@
 .sidebar-logo-brand .logo-mark {
   font-size: 16px;
   font-weight: 800;
-  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: -0.02em;
   flex-shrink: 0;
   padding: 4px 6px;
   border-radius: 6px;
   background-color: var(--bg-elevated);
-  background-image: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  line-height: 1;
+}
+
+.logo-mark-accent {
+  color: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-mark-rest {
+  color: var(--text-primary);
 }
 
 .sidebar-logo-brand .logo-text {
@@ -115,10 +123,16 @@
   transition: opacity var(--t-fast);
 }
 
+.logo-text-accent {
+  color: #3b82f6;
+  font-weight: 800;
+}
+
 .sidebar.collapsed .logo-text {
   opacity: 0;
   width: 0;
   overflow: hidden;
+  display: none;
 }
 
 /* === 折叠按钮：绝对定位在侧边栏右边框上 === */
@@ -173,31 +187,11 @@
   margin: 0 16px 12px;
 }
 
-/* === 侧边栏分组标签（面包屑层级） === */
-.nav-section-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-tertiary);
-  padding: 12px 14px 8px;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.sidebar.collapsed .nav-section-label {
-  text-align: center;
-  font-size: 9px;
-  padding: 12px 0 8px;
-  letter-spacing: 0.05em;
-  text-overflow: ellipsis;
-}
-
 /* === 侧边栏导航 === */
 .nav-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 /* nav-item：尺寸不变式 —— 折叠/展开高度和图标大小一致 */
@@ -205,11 +199,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  height: var(--nav-item-height);
+  height: 40px;
   padding: 0 14px;
   border-radius: var(--r-sm);
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   transition: background var(--t-fast), color var(--t-fast);
   position: relative;
@@ -230,13 +224,6 @@
   background: var(--bg-elevated);
   color: var(--text-primary);
   font-weight: 600;
-}
-
-/* 面包屑子项：缩进表示层级 */
-.nav-sub-item {
-  padding-left: 36px;
-  font-size: 13px;
-  height: 40px;
 }
 
 /* 图标：不变式 —— 折叠/展开大小一致 */
@@ -271,24 +258,6 @@
   justify-content: center;
   padding: 0;
   gap: 0;
-}
-
-.sidebar.collapsed .nav-sub-item {
-  padding-left: 0;
-}
-
-/* 折叠态：分组标签显示圆点作为视觉分隔 */
-.sidebar.collapsed .nav-section-label {
-  font-size: 0;
-  padding: 10px 0 6px;
-  text-align: center;
-}
-
-.sidebar.collapsed .nav-section-label::after {
-  content: '·';
-  font-size: 20px;
-  color: var(--text-tertiary);
-  line-height: 1;
 }
 
 /* === 折叠态 tooltip：z-index 最顶层，不干涉侧边栏边框 === */
