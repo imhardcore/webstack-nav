@@ -68,7 +68,7 @@ hugo --minify
 
 ## 后台管理 (Decap CMS)
 
-1. 访问 `https://imyan.github.io/webstack-nav/admin/`
+1. 访问 `https://imhardcore.github.io/webstack-nav/admin/`
 2. 使用 GitHub 账号登录
 3. 在 CMS 中管理网址和分类
 

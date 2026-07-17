@@ -1,4 +1,4 @@
-baseURL = "https://imyan.github.io/webstack-nav/"
+baseURL = "https://imhardcore.github.io/webstack-nav/"
 languageCode = "zh-cn"
 title = "WebStack - 设计师网址导航"
 defaultContentLanguage = "cn"
@@ -18,7 +18,7 @@ defaultContentLanguage = "cn"
 [params]
   description = "收集国内外优秀设计网站、UI设计资源网站、灵感创意网站"
   author = "WebStack"
-  githubRepo = "imyan/webstack-nav"
+  githubRepo = "imhardcore/webstack-nav"
   defaultTheme = "light"
 
 # 输出格式
