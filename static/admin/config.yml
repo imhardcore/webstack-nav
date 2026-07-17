@@ -2,6 +2,9 @@ backend:
   name: github
   repo: imhardcore/webstack-nav
   branch: main
+  # 仅允许 Token 登录，避免默认 OAuth 跳转到 Netlify
+  # PKCE 对 GitHub 尚未实现（计划 Q4 2025）
+  auth_methods: [token]
 
 media_folder: "static/images/logos"
 public_folder: "/webstack-nav/images/logos"
