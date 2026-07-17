@@ -1,0 +1,66 @@
+{
+  "groups": [
+    {
+      "id": "top",
+      "icon": "linecons-star",
+      "name": { "cn": "顶级", "en": "Top" },
+      "categories": [
+        { "id": "常用推荐", "icon": "linecons-star", "name": { "cn": "常用推荐", "en": "Recommended" } },
+        { "id": "推荐", "icon": "linecons-star", "name": { "cn": "推荐", "en": "Sponsor" } },
+        { "id": "社区资讯", "icon": "linecons-doc", "name": { "cn": "社区资讯", "en": "Information" } },
+        { "id": "UED团队", "icon": "linecons-user", "name": { "cn": "UED团队", "en": "UED Team" } }
+      ]
+    },
+    {
+      "id": "inspiration",
+      "icon": "linecons-lightbulb",
+      "name": { "cn": "灵感采集", "en": "Inspiration" },
+      "categories": [
+        { "id": "发现产品", "icon": "", "name": { "cn": "发现产品", "en": "Product" } },
+        { "id": "界面灵感", "icon": "", "name": { "cn": "界面灵感", "en": "UI Inspiration" } },
+        { "id": "网页灵感", "icon": "", "name": { "cn": "网页灵感", "en": "WEB Inspiration" } }
+      ]
+    },
+    {
+      "id": "resources",
+      "icon": "linecons-thumbs-up",
+      "name": { "cn": "素材资源", "en": "Resources" },
+      "categories": [
+        { "id": "图标素材", "icon": "", "name": { "cn": "图标素材", "en": "Icon" } },
+        { "id": "LOGO设计", "icon": "", "name": { "cn": "LOGO设计", "en": "Logo Design" } },
+        { "id": "平面素材", "icon": "", "name": { "cn": "平面素材", "en": "Graphic Design" } },
+        { "id": "UI资源", "icon": "", "name": { "cn": "UI资源", "en": "UI Design" } },
+        { "id": "Sketch资源", "icon": "", "name": { "cn": "Sketch资源", "en": "Sketch" } },
+        { "id": "字体资源", "icon": "", "name": { "cn": "字体资源", "en": "Fonts" } },
+        { "id": "Mockup", "icon": "", "name": { "cn": "Mockup", "en": "Mockup" } },
+        { "id": "摄影图库", "icon": "", "name": { "cn": "摄影图库", "en": "Free Photos" } },
+        { "id": "PPT资源", "icon": "", "name": { "cn": "PPT资源", "en": "PPT" } }
+      ]
+    },
+    {
+      "id": "tools",
+      "icon": "linecons-diamond",
+      "name": { "cn": "常用工具", "en": "Design Tools" },
+      "categories": [
+        { "id": "图形创意", "icon": "", "name": { "cn": "图形创意", "en": "Creative Graphics" } },
+        { "id": "界面设计", "icon": "", "name": { "cn": "界面设计", "en": "User Interface" } },
+        { "id": "交互动效", "icon": "", "name": { "cn": "交互动效", "en": "Motion Design" } },
+        { "id": "在线配色", "icon": "", "name": { "cn": "在线配色", "en": "Colors" } },
+        { "id": "在线工具", "icon": "", "name": { "cn": "在线工具", "en": "Online Tools" } },
+        { "id": "Chrome插件", "icon": "", "name": { "cn": "Chrome插件", "en": "Chrome Plug-ins" } }
+      ]
+    },
+    {
+      "id": "tutorial",
+      "icon": "linecons-pencil",
+      "name": { "cn": "学习教程", "en": "Tutorial" },
+      "categories": [
+        { "id": "设计规范", "icon": "", "name": { "cn": "设计规范", "en": "Design Guidelines" } },
+        { "id": "视频教程", "icon": "", "name": { "cn": "视频教程", "en": "Video Tutorial" } },
+        { "id": "设计文章", "icon": "", "name": { "cn": "设计文章", "en": "Design Article" } },
+        { "id": "设计电台", "icon": "", "name": { "cn": "设计电台", "en": "Design FM" } },
+        { "id": "交互设计", "icon": "", "name": { "cn": "交互设计", "en": "UX" } }
+      ]
+    }
+  ]
+}

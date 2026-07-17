@@ -1,0 +1,59 @@
+<div class="sidebar-menu toggle-others fixed">
+    <div class="sidebar-menu-inner">
+        <header class="logo-env">
+            <!-- logo -->
+            <div class="logo">
+                <a href="{{ .RelPermalink }}" class="logo-expanded">
+                    <img src="/images/logo@2x.png" width="100%" alt="" />
+                </a>
+                <a href="{{ .RelPermalink }}" class="logo-collapsed">
+                    <img src="/images/logo-collapsed@2x.png" width="40" alt="" />
+                </a>
+            </div>
+            <div class="mobile-menu-toggle visible-xs">
+                <a href="#" data-toggle="user-info-menu">
+                    <i class="linecons-cog"></i>
+                </a>
+                <a href="#" data-toggle="mobile-menu">
+                    <i class="fa-bars"></i>
+                </a>
+            </div>
+        </header>
+        <ul id="main-menu" class="main-menu">
+            {{ range $group := .Site.Data.categories.groups }}
+                {{ if eq $group.id "top" }}
+                    {{ range $cat := $group.categories }}
+                    <li>
+                        <a href="#{{ $cat.id }}" class="smooth">
+                            <i class="{{ $cat.icon }}"></i>
+                            <span class="title">{{ index $cat.name $.Language.Lang }}</span>
+                        </a>
+                    </li>
+                    {{ end }}
+                {{ else }}
+                    <li>
+                        <a>
+                            <i class="{{ $group.icon }}"></i>
+                            <span class="title">{{ index $group.name $.Language.Lang }}</span>
+                        </a>
+                        <ul>
+                            {{ range $cat := $group.categories }}
+                            <li>
+                                <a href="#{{ $cat.id }}" class="smooth">
+                                    <span class="title">{{ index $cat.name $.Language.Lang }}</span>
+                                </a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </li>
+                {{ end }}
+            {{ end }}
+            <li>
+                <a href="{{ "about" | relLangURL }}">
+                    <i class="linecons-heart"></i>
+                    <span class="title">{{ T "about" }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

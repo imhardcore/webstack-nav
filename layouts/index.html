@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ partial "search.html" . }}
+
+{{ $sites := .Site.Data.sites.sites }}
+{{ $lang := .Language.Lang }}
+
+{{ range $group := .Site.Data.categories.groups }}
+    {{ range $cat := $group.categories }}
+        {{ $catSites := where $sites "category" $cat.id }}
+        {{ if gt (len $catSites) 0 }}
+        <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="{{ $cat.id }}"></i>{{ index $cat.name $lang }}</h4>
+        <div class="row">
+            {{ range $i, $site := $catSites }}
+                {{ partial "site-card.html" $site }}
+                {{ if eq (mod (add $i 1) 4) 0 }}
+                    </div>
+                    <div class="row">
+                {{ end }}
+            {{ end }}
+        </div>
+        <br />
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ end }}

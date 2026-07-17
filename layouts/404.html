@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="search-container" id="search-box">
+    <div class="input-group" style="margin-bottom: 20px;">
+        <span class="input-group-addon"><i class="fa-search"></i></span>
+        <input type="text" id="site-search" class="form-control"
+               placeholder="{{ T "search" }}">
+    </div>
+    <div id="search-results" class="search-results" style="display:none;"></div>
+</div>
+
+<div class="text-center" style="padding: 80px 20px;">
+    <h1 style="font-size: 96px; font-weight: bold; color: #e4ecf3;">404</h1>
+    <p style="font-size: 18px; margin-bottom: 30px;">{{ T "noResults" }}</p>
+    <a href="{{ (site.GetPage "/").RelPermalink }}" class="btn btn-default">
+        <i class="fa-home"></i> {{ T "title" }}
+    </a>
+</div>
+{{ end }}

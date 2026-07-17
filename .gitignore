@@ -1,0 +1,25 @@
+# Hugo
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (for migration scripts)
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+
+# Trae
+.trae/

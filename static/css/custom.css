@@ -1,0 +1,200 @@
+/* ===========================
+   WebStack Custom Styles
+   暗色模式、搜索、UI优化
+   =========================== */
+
+/* === CSS 变量 === */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #30303a;
+    --text-secondary: #6c6c80;
+    --border-color: #e4ecf3;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 36, 100, 0.3);
+    --sidebar-bg: #2c2f3a;
+    --sidebar-text: #8b94a5;
+}
+
+/* === 暗色模式变量 === */
+body.dark-mode {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #333344;
+    --card-bg: #1e1e3f;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --sidebar-bg: #0f0f1a;
+    --sidebar-text: #8b94a5;
+}
+
+/* === 暗色模式样式 === */
+body.dark-mode {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .main-content {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .box2 {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .box2:hover {
+    box-shadow: 0 26px 40px -24px var(--shadow-color);
+}
+
+body.dark-mode .sidebar-menu {
+    background-color: var(--sidebar-bg);
+}
+
+body.dark-mode .navbar {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .xe-user-name strong {
+    color: var(--text-primary);
+}
+
+body.dark-mode .overflowClip_2 {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .text-gray {
+    color: var(--text-primary);
+}
+
+body.dark-mode .footer-inner {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .footer-text {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .input-group .form-control {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+body.dark-mode .input-group-addon {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+body.dark-mode .dropdown-menu {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .dropdown-menu > li > a {
+    color: var(--text-primary);
+}
+
+body.dark-mode .dropdown-menu > li > a:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* === 搜索框样式 === */
+.search-container {
+    margin-bottom: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--bg-primary);
+    padding: 15px 0;
+}
+
+.search-results .row {
+    margin-bottom: 15px;
+}
+
+/* === 暗色模式切换按钮 === */
+#theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover i {
+    transform: rotate(20deg);
+}
+
+/* === 卡片动画优化 === */
+.box2 {
+    will-change: transform, box-shadow;
+}
+
+/* === 回到顶部按钮 === */
+.go-up a {
+    transition: all 0.3s ease;
+}
+
+.go-up a:hover {
+    transform: translateY(-3px);
+}
+
+/* === 响应式优化 === */
+@media (max-width: 768px) {
+    .search-container {
+        position: relative;
+        padding: 10px 0;
+    }
+
+    .box2 {
+        height: auto;
+        min-height: 86px;
+        padding: 15px;
+    }
+
+    .xe-comment {
+        position: relative;
+        transform: none;
+        margin-left: 50px;
+        top: 0;
+    }
+}
+
+/* === 搜索高亮 === */
+.search-highlight {
+    background-color: #ffeb3b;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #000;
+}
+
+/* === 加载动画 === */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === 页脚优化 === */
+.footer-text {
+    font-size: 13px;
+}
+
+/* === 卡片图标优化 === */
+.xe-user-img img {
+    transition: transform 0.3s ease;
+}
+
+.box2:hover .xe-user-img img {
+    transform: scale(1.1);
+}
