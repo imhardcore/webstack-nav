@@ -3,7 +3,7 @@ backend:
   repo: imhardcore/webstack-nav
   branch: main
   auth_type: oauth
-  app_id: ""
+  app_id: "Ov23lixZTVyBVemtni13"
 
 media_folder: "static/images/logos"
 public_folder: "/images/logos"
