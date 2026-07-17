@@ -58,7 +58,7 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 8px 12px 12px;
+  padding: 8px 0 12px;
   /* 内部滚动容器不影响外部 flyout 溢出 */
   border-radius: inherit;
 }
