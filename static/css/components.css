@@ -161,16 +161,41 @@
   background: var(--bg-hover);
 }
 
-/* 折叠态：隐藏文字 */
+/* 折叠态：隐藏文字与子菜单，仅显示图标 */
 .sidebar.collapsed .nav-text,
 .sidebar.collapsed .nav-chevron,
 .sidebar.collapsed .nav-sub {
   display: none;
 }
 
+/* 折叠态：nav-item 紧凑居中，移除 gap 干扰 */
 .sidebar.collapsed .nav-item {
   justify-content: center;
-  padding: 10px;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  height: 40px;
+  width: 100%;
+}
+
+.sidebar.collapsed .nav-item > i:first-child {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* 折叠态：导航列表与内边距紧凑化 */
+.sidebar.collapsed .nav-list {
+  gap: 4px;
+}
+
+.sidebar.collapsed .sidebar-nav {
+  padding: 8px;
+}
+
+/* 折叠态：tooltip 提示（通过 title 属性浏览器原生支持） */
+.sidebar.collapsed .nav-item {
+  position: relative;
 }
 
 .sidebar-toggle {

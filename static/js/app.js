@@ -13,6 +13,12 @@
             if (window.innerWidth <= 768) {
                 sidebar.classList.toggle('expanded');
             }
+            // 折叠态下收起所有已展开的子菜单，避免展开时残留
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.querySelectorAll('.nav-group.expanded').forEach(function(g) {
+                    g.classList.remove('expanded');
+                });
+            }
         });
 
         // 点击外部关闭移动端菜单
@@ -29,11 +35,36 @@
     function initNavGroups() {
         document.querySelectorAll('.nav-group > .has-sub').forEach(function(item) {
             item.addEventListener('click', function(e) {
+                const sidebar = document.getElementById('sidebar');
+                // 折叠态：点击直接展开 sidebar，不操作子菜单
+                if (sidebar && sidebar.classList.contains('collapsed')) {
+                    e.preventDefault();
+                    sidebar.classList.remove('collapsed');
+                    return;
+                }
                 e.preventDefault();
                 const group = item.closest('.nav-group');
                 if (group) group.classList.toggle('expanded');
             });
         });
+
+        // 折叠态：为 nav-item 添加 title 属性实现原生 tooltip
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) {
+            const updateTitles = function() {
+                sidebar.querySelectorAll('.nav-item').forEach(function(item) {
+                    const text = item.querySelector('.nav-text')?.textContent || '';
+                    if (sidebar.classList.contains('collapsed')) {
+                        item.setAttribute('title', text);
+                    } else {
+                        item.removeAttribute('title');
+                    }
+                });
+            };
+            updateTitles();
+            const toggle = sidebar.querySelector('.sidebar-toggle');
+            toggle?.addEventListener('click', updateTitles);
+        }
     }
 
     // 平滑滚动到锚点

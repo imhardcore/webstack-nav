@@ -27,6 +27,7 @@
   gap: var(--space-md);
   padding: var(--space-md);
   min-height: calc(100vh - var(--toolbar-height));
+  contain: layout; /* 限制重排范围，提升折叠动画性能 */
 }
 
 /* 浮动岛侧边栏 */
@@ -44,6 +45,7 @@
   flex-direction: column;
   overflow: hidden;
   transition: width var(--t-medium);
+  will-change: width; /* 提示浏览器提前创建合成层 */
   z-index: 50;
 }
 
