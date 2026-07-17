@@ -1,14 +1,10 @@
-<footer class="main-footer sticky footer-type-1">
-    <div class="footer-inner">
-        <div class="footer-text">
-            &copy; 2017 - {{ now.Format "2006" }}
-            <a href="{{ "about" | relLangURL }}"><strong>WebStack</strong></a>
-            {{ with T "poweredBy" }}{{ . }}{{ else }}Powered by Hugo{{ end }}
-        </div>
-        <div class="go-up">
-            <a href="#" rel="go-top">
-                <i class="fa-angle-up"></i>
-            </a>
-        </div>
+<footer class="footer">
+    <div>
+        &copy; 2017 - {{ now.Format "2006" }}
+        <a href="{{ .Site.BaseURL }}"><strong>WebStack</strong></a>
+        · Powered by Hugo
     </div>
+    <a href="#" class="go-top" rel="go-top" aria-label="回到顶部">
+        <i class="fa-angle-up" aria-hidden="true"></i>
+    </a>
 </footer>

@@ -1,20 +1,26 @@
 {{ define "main" }}
-{{ partial "search.html" . }}
-
 {{ $sites := .Site.Data.sites.sites }}
 
+<div id="search-results" class="search-results" style="display:none;" aria-live="polite"></div>
+
+<div id="catalog">
 {{ range $group := .Site.Data.categories.groups }}
     {{ range $cat := $group.categories }}
         {{ $catSites := where $sites "category" $cat.id }}
         {{ if gt (len $catSites) 0 }}
-        <h2 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="{{ $cat.id }}" aria-hidden="true"></i>{{ $cat.name }}</h2>
-        <div class="cards-grid">
-            {{ range $site := $catSites }}
-                {{ partial "site-card.html" $site }}
-            {{ end }}
-        </div>
-        <br />
+        <section class="category-section" id="{{ $cat.id }}">
+            <div class="section-header">
+                <h2 class="section-title">{{ $cat.name }}</h2>
+                <span class="section-count">{{ len $catSites }} 个网站</span>
+            </div>
+            <div class="cards-grid">
+                {{ range $catSites }}
+                    {{ partial "site-card.html" . }}
+                {{ end }}
+            </div>
+        </section>
         {{ end }}
     {{ end }}
 {{ end }}
+</div>
 {{ end }}

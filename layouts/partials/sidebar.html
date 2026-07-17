@@ -1,56 +1,38 @@
-<div class="sidebar-menu toggle-others fixed">
-    <div class="sidebar-menu-inner">
-        <header class="logo-env">
-            <!-- logo -->
-            <div class="logo">
-                <a href="{{ .RelPermalink }}" class="logo-expanded">
-                    <img src="{{ .Site.BaseURL }}images/logo@2x.png" width="100%" height="36" alt="WebStack 首页" />
-                </a>
-                <a href="{{ .RelPermalink }}" class="logo-collapsed">
-                    <img src="{{ .Site.BaseURL }}images/logo-collapsed@2x.png" width="40" height="40" alt="WebStack 首页" />
-                </a>
-            </div>
-            <div class="mobile-menu-toggle visible-xs">
-                <a href="#" data-toggle="user-info-menu" aria-label="设置">
-                    <i class="linecons-cog" aria-hidden="true"></i>
-                </a>
-                <a href="#" data-toggle="mobile-menu" aria-label="打开菜单">
-                    <i class="fa-bars" aria-hidden="true"></i>
-                </a>
-            </div>
-        </header>
-
-        <ul id="main-menu" class="main-menu">
+<aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav" aria-label="分类导航">
+        <ul class="nav-list">
             {{ range $group := .Site.Data.categories.groups }}
-                {{ if eq $group.id "top" }}
-                    <!-- 顶级分类直接显示 -->
-                    {{ range $cat := $group.categories }}
-                    <li>
-                        <a href="#{{ $cat.id }}" class="smooth">
-                            <i class="{{ $cat.icon }}" aria-hidden="true"></i>
-                            <span class="title">{{ $cat.name }}</span>
-                        </a>
-                    </li>
-                    {{ end }}
-                {{ else }}
-                    <!-- 其他分类折叠显示 -->
-                    <li>
-                        <a href="#{{ $group.id }}" class="smooth has-sub">
-                            <i class="{{ $group.icon }}" aria-hidden="true"></i>
-                            <span class="title">{{ $group.name }}</span>
-                        </a>
-                        <ul>
-                            {{ range $cat := $group.categories }}
-                            <li>
-                                <a href="#{{ $cat.id }}" class="smooth">
-                                    <span class="title">{{ $cat.name }}</span>
-                                </a>
-                            </li>
-                            {{ end }}
-                        </ul>
-                    </li>
+            {{ if eq $group.id "top" }}
+                {{ range $cat := $group.categories }}
+                <li>
+                    <a href="#{{ $cat.id }}" class="nav-item smooth">
+                        <i class="{{ $cat.icon }}" aria-hidden="true"></i>
+                        <span class="nav-text">{{ $cat.name }}</span>
+                    </a>
+                </li>
                 {{ end }}
+            {{ else }}
+                <li class="nav-group">
+                    <a href="#" class="nav-item has-sub">
+                        <i class="{{ $group.icon }}" aria-hidden="true"></i>
+                        <span class="nav-text">{{ $group.name }}</span>
+                        <i class="fa-angle-down nav-chevron" aria-hidden="true"></i>
+                    </a>
+                    <ul class="nav-sub">
+                        {{ range $cat := $group.categories }}
+                        <li>
+                            <a href="#{{ $cat.id }}" class="smooth">
+                                <span class="nav-text">{{ $cat.name }}</span>
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </li>
+            {{ end }}
             {{ end }}
         </ul>
-    </div>
-</div>
+    </nav>
+    <button class="sidebar-toggle" aria-label="折叠/展开侧边栏">
+        <i class="fa-angle-left" aria-hidden="true"></i>
+    </button>
+</aside>

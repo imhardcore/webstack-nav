@@ -2,82 +2,91 @@
     'use strict';
 
     let sitesData = [];
-    let allSections = [];
+    let catalogEl = null;
+    let resultsEl = null;
 
-    function initSearchData() {
-        const cards = document.querySelectorAll('.site-card .card-inner');
-        cards.forEach(function(card) {
+    function initData() {
+        catalogEl = document.getElementById('catalog');
+        resultsEl = document.getElementById('search-results');
+
+        document.querySelectorAll('.site-card').forEach(function(card) {
+            const title = card.querySelector('.card-title')?.textContent || '';
+            const desc = card.querySelector('.card-desc')?.textContent || '';
             sitesData.push({
-                title: (card.dataset.title || '').toLowerCase(),
-                description: (card.querySelector('.card-desc')?.textContent || '').toLowerCase(),
-                url: (card.dataset.url || '').toLowerCase(),
-                element: card.closest('.site-card')
+                title: title.toLowerCase(),
+                desc: desc.toLowerCase(),
+                titleRaw: title,
+                descRaw: desc,
+                url: card.getAttribute('href') || '',
+                element: card
             });
-        });
-
-        document.querySelectorAll('.text-gray, .cards-grid, br').forEach(function(el) {
-            allSections.push(el);
         });
     }
 
-    function search(query) {
-        const results = document.getElementById('search-results');
-        const queryLower = query.toLowerCase().trim();
-
-        if (!queryLower) {
-            results.style.display = 'none';
-            results.innerHTML = '';
-            allSections.forEach(function(el) {
-                el.style.display = '';
-            });
-            return;
-        }
-
-        allSections.forEach(function(el) {
-            el.style.display = 'none';
-        });
-
-        const matches = sitesData.filter(function(site) {
-            return site.title.includes(queryLower) ||
-                   site.description.includes(queryLower) ||
-                   site.url.includes(queryLower);
-        });
-
-        results.innerHTML = '';
-        results.style.display = 'block';
+    function renderResults(matches) {
+        if (!resultsEl) return;
+        resultsEl.innerHTML = '';
 
         if (matches.length === 0) {
-            const noResults = document.createElement('p');
-            noResults.style.cssText = 'text-align:center;padding:40px;color:#999;';
-            noResults.textContent = '未找到相关网站';
-            results.appendChild(noResults);
+            resultsEl.innerHTML = '<p class="search-results-empty">未找到相关网站</p>';
+            resultsEl.style.display = 'block';
             return;
         }
 
         const grid = document.createElement('div');
         grid.className = 'cards-grid';
-        results.appendChild(grid);
-
         matches.forEach(function(site) {
             const clone = site.element.cloneNode(true);
             grid.appendChild(clone);
         });
+        resultsEl.appendChild(grid);
+        resultsEl.style.display = 'block';
+
+        // 重新触发懒加载
+        if (window.lozad) {
+            lozad(resultsEl.querySelectorAll('.lozad')).observe();
+        }
+    }
+
+    function search(query) {
+        const q = query.toLowerCase().trim();
+
+        if (!q) {
+            resultsEl.style.display = 'none';
+            resultsEl.innerHTML = '';
+            if (catalogEl) catalogEl.style.display = '';
+            return;
+        }
+
+        if (catalogEl) catalogEl.style.display = 'none';
+
+        const matches = sitesData.filter(function(s) {
+            return s.title.includes(q) || s.desc.includes(q) || s.url.toLowerCase().includes(q);
+        });
+
+        renderResults(matches);
     }
 
     let debounceTimer = null;
-    function debouncedSearch(query) {
+    function debouncedSearch(q) {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(function() {
-            search(query);
-        }, 200);
+        debounceTimer = setTimeout(function() { search(q); }, 200);
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        initSearchData();
-        const searchInput = document.getElementById('site-search');
-        if (searchInput) {
-            searchInput.addEventListener('input', function(e) {
+        initData();
+        const input = document.getElementById('site-search');
+        if (input) {
+            input.addEventListener('input', function(e) {
                 debouncedSearch(e.target.value);
+            });
+            // ESC 清空
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    input.value = '';
+                    search('');
+                    input.blur();
+                }
             });
         }
     });

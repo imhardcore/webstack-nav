@@ -1,0 +1,12 @@
+refactor(frontend): 彻底重构前端，摆脱 Xenon/Bootstrap/jQuery 旧框架
+
+- 布局：上下结构（全宽工具栏 + 工作区），浮动岛侧边栏（200px/折叠64px）
+- 工具栏：搜索框左对齐 + 主题/后台/GitHub 右对齐，毛玻璃效果
+- 侧边栏：浮动岛样式，sticky 固定，分类导航 + 折叠组 + 平滑滚动
+- 内容区：6 列卡片网格，分类 section 语义化，网站计数标签
+- 卡片：语义化 a 标签，32px 图标，2 行描述截断，悬停发光
+- 样式：全新 4 文件架构（tokens/base/layout/components），CSS 变量驱动
+- 脚本：原生 DOM API，删除 jQuery/TweenMax/Xenon JS，3 文件架构
+- 字体：Inter + Noto Sans SC + JetBrains Mono
+- 删除旧 CSS 8 个、旧 JS 8 个
+- 保留：FontAwesome/Linecons 图标字体、lozad 懒加载、数据模型、Sveltia CMS

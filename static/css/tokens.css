@@ -1,0 +1,66 @@
+/* ============================================
+   WebStack Nav - Design Tokens
+   设计令牌：颜色/圆角/阴影/间距/字体/过渡
+   ============================================ */
+
+:root {
+  /* 背景层级（深蓝灰系） */
+  --bg-base: #0b0f1a;
+  --bg-surface: #111827;
+  --bg-elevated: #1a2234;
+  --bg-hover: #1e293b;
+
+  /* 边框 */
+  --border-subtle: rgba(148, 163, 184, 0.08);
+  --border-default: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.2);
+
+  /* 文字 */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+
+  /* 强调色（蓝紫渐变） */
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-dim: rgba(99, 102, 241, 0.12);
+  --accent-glow: rgba(99, 102, 241, 0.4);
+
+  /* 辅助色 */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+
+  /* 圆角 */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.25);
+
+  /* 间距 */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* 字体 */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* 过渡 */
+  --t-fast: 150ms ease;
+  --t-medium: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 尺寸 */
+  --toolbar-height: 60px;
+  --sidebar-width: 200px;
+  --sidebar-collapsed: 64px;
+}

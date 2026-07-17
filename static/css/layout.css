@@ -1,0 +1,96 @@
+/* ============================================
+   WebStack Nav - Layout
+   布局：工具栏 + 工作区（浮动岛侧边栏 + 内容区）
+   ============================================ */
+
+/* 工具栏：全宽 sticky 顶部 */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--toolbar-height);
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
+  gap: var(--space-md);
+}
+
+/* 工作区：浮动岛侧边栏 + 内容区 */
+.workspace {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  min-height: calc(100vh - var(--toolbar-height));
+}
+
+/* 浮动岛侧边栏 */
+.sidebar {
+  position: sticky;
+  top: calc(var(--toolbar-height) + var(--space-md));
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  max-height: calc(100vh - var(--toolbar-height) - var(--space-md) * 2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--t-medium);
+  z-index: 50;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-sm);
+}
+
+/* 内容区：独立滚动 */
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .workspace {
+    padding: var(--space-sm);
+    gap: var(--space-sm);
+  }
+  .content {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    padding: 0 var(--space-md);
+  }
+  .sidebar {
+    position: fixed;
+    left: var(--space-sm);
+    top: calc(var(--toolbar-height) + var(--space-sm));
+    width: var(--sidebar-collapsed);
+    z-index: 200;
+  }
+  .sidebar.expanded {
+    width: var(--sidebar-width);
+    box-shadow: var(--shadow-lg);
+  }
+  .content {
+    padding: var(--space-sm);
+  }
+}

@@ -3,14 +3,16 @@
 <head>
     {{ partial "head.html" . }}
 </head>
-<body class="page-body">
-    <div class="page-container">
+<body>
+    <header class="toolbar">
+        {{ partial "navbar.html" . }}
+    </header>
+    <div class="workspace">
         {{ partial "sidebar.html" . }}
-        <div class="main-content">
-            {{ partial "navbar.html" . }}
+        <main class="content">
             {{ block "main" . }}{{ end }}
             {{ partial "footer.html" . }}
-        </div>
+        </main>
     </div>
     {{ partial "scripts.html" . }}
 </body>
