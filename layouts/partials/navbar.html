@@ -7,31 +7,31 @@
         </li>
         <li class="dropdown hover-line language-switcher">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="/images/flags/{{ if eq .Language.Lang "cn" }}flag-cn.png{{ else }}flag-us.png{{ end }}" alt="flag" />
+                <img src="{{ "/images/flags/" | absURL }}{{ if eq .Language.Lang "cn" }}flag-cn.png{{ else }}flag-us.png{{ end }}" alt="flag" />
                 <span>{{ .Language.LanguageName }}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu languages">
                 {{ if eq .Language.Lang "cn" }}
                 <li>
-                    <a href="/en/">
-                        <img src="/images/flags/flag-us.png" alt="flag-us" /> English
+                    <a href="{{ "/en/" | absURL }}">
+                        <img src="{{ "/images/flags/flag-us.png" | absURL }}" alt="flag-us" /> English
                     </a>
                 </li>
                 <li class="active">
-                    <a href="/">
-                        <img src="/images/flags/flag-cn.png" alt="flag-cn" /> Chinese
+                    <a href="{{ "/" | absURL }}">
+                        <img src="{{ "/images/flags/flag-cn.png" | absURL }}" alt="flag-cn" /> Chinese
                     </a>
                 </li>
                 {{ else }}
                 <li class="active">
-                    <a href="/en/">
-                        <img src="/images/flags/flag-us.png" alt="flag-us" /> English
+                    <a href="{{ "/en/" | absURL }}">
+                        <img src="{{ "/images/flags/flag-us.png" | absURL }}" alt="flag-us" /> English
                     </a>
                 </li>
                 <li>
-                    <a href="/">
-                        <img src="/images/flags/flag-cn.png" alt="flag-cn" /> Chinese
+                    <a href="{{ "/" | absURL }}">
+                        <img src="{{ "/images/flags/flag-cn.png" | absURL }}" alt="flag-cn" /> Chinese
                     </a>
                 </li>
                 {{ end }}

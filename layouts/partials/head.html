@@ -7,20 +7,20 @@
 <meta name="description" content="{{ with T "description" }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="/images/favicon.png">
+<link rel="shortcut icon" href="{{ "/images/favicon.png" | absURL }}">
 
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 
 <!-- CSS -->
-<link rel="stylesheet" href="/css/fonts/linecons/css/linecons.css">
-<link rel="stylesheet" href="/css/fonts/fontawesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/bootstrap.css">
-<link rel="stylesheet" href="/css/xenon-core.css">
-<link rel="stylesheet" href="/css/xenon-components.css">
-<link rel="stylesheet" href="/css/xenon-skins.css">
-<link rel="stylesheet" href="/css/nav.css">
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="{{ "/css/fonts/linecons/css/linecons.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/fonts/fontawesome/css/font-awesome.min.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/bootstrap.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/xenon-core.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/xenon-components.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/xenon-skins.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/nav.css" | absURL }}">
+<link rel="stylesheet" href="{{ "/css/custom.css" | absURL }}">
 
 <!-- HTML5 shim and Respond.js IE8 support -->
 <!--[if lt IE 9]>

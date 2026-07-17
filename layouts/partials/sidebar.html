@@ -4,10 +4,10 @@
             <!-- logo -->
             <div class="logo">
                 <a href="{{ .RelPermalink }}" class="logo-expanded">
-                    <img src="/images/logo@2x.png" width="100%" alt="" />
+                    <img src="{{ "/images/logo@2x.png" | absURL }}" width="100%" alt="" />
                 </a>
                 <a href="{{ .RelPermalink }}" class="logo-collapsed">
-                    <img src="/images/logo-collapsed@2x.png" width="40" alt="" />
+                    <img src="{{ "/images/logo-collapsed@2x.png" | absURL }}" width="40" alt="" />
                 </a>
             </div>
             <div class="mobile-menu-toggle visible-xs">

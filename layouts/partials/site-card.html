@@ -9,8 +9,8 @@
          data-site-desc="{{ .description }}">
         <div class="xe-comment-entry">
             <a class="xe-user-img">
-                <img data-src="/images/logos/{{ .logo }}"
-                     src="/images/logos/default.png"
+                <img data-src="{{ "/images/logos/" | absURL }}{{ .logo }}"
+                     src="{{ "/images/logos/default.png" | absURL }}"
                      class="lozad img-circle"
                      width="40"
                      alt="{{ .title }}">
