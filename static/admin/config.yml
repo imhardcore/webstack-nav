@@ -2,8 +2,6 @@ backend:
   name: github
   repo: imhardcore/webstack-nav
   branch: main
-  auth_type: pkce
-  app_id: "Ov23lixZTVyBVemtni13"
 
 media_folder: "static/images/logos"
 public_folder: "/webstack-nav/images/logos"
