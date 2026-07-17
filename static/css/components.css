@@ -94,11 +94,11 @@
 }
 
 /* Logo Mark: 绝对定位固定位置不动 */
-/* 折叠态 sidebar 80px, mark 约 32px, 居中 left = (80-32)/2 = 24px */
-/* 展开态和折叠态都保持 left:24px，位置完全不动 */
+/* 折叠态 sidebar 60px, mark 约 32px, 居中 left = (60-32)/2 = 14px */
+/* 展开态和折叠态都保持 left:14px，位置完全不动 */
 .sidebar-logo-brand .logo-mark {
   position: absolute;
-  left: 24px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 16px;
@@ -126,7 +126,7 @@
 /* Logo Text: 用 max-width 实现挤压效果 */
 .sidebar-logo-brand .logo-text {
   position: absolute;
-  left: 60px;
+  left: 54px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
@@ -136,7 +136,7 @@
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 200px;
+  max-width: 130px;
   opacity: 1;
   transition: max-width var(--t-medium), opacity 0.15s ease;
 }
@@ -243,11 +243,11 @@
 }
 
 /* 图标：绝对定位固定位置不动 */
-/* 折叠态 sidebar 80px, 图标 18px, 居中 left = (80-18)/2 = 31px */
-/* 展开态和折叠态都保持 left:31px，位置完全不动 */
+/* 折叠态 sidebar 60px, 图标 18px, 居中 left = (60-18)/2 = 21px */
+/* 展开态和折叠态都保持 left:21px，位置完全不动 */
 .nav-item > i:first-child {
   position: absolute;
-  left: 31px;
+  left: 21px;
   top: 50%;
   transform: translateY(-50%);
   width: var(--icon-size);
@@ -264,14 +264,14 @@
 /* 文字：用 max-width 实现挤压效果 */
 .nav-text {
   position: absolute;
-  left: 60px;
+  left: 50px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 130px;
   opacity: 1;
   transition: max-width var(--t-medium), opacity 0.15s ease;
 }

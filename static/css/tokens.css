@@ -61,8 +61,8 @@
 
   /* 尺寸 */
   --toolbar-height: 60px;
-  --sidebar-width: 280px;
-  --sidebar-collapsed: 80px;
+  --sidebar-width: 200px;
+  --sidebar-collapsed: 60px;
   --nav-item-height: 44px;
   --icon-size: 18px;
 }
