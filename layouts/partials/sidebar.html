@@ -4,10 +4,10 @@
             <!-- logo -->
             <div class="logo">
                 <a href="{{ .RelPermalink }}" class="logo-expanded">
-                    <img src="{{ "/images/logo@2x.png" | relURL }}" width="100%" alt="" />
+                    <img src="{{ .Site.BaseURL }}images/logo@2x.png" width="100%" alt="" />
                 </a>
                 <a href="{{ .RelPermalink }}" class="logo-collapsed">
-                    <img src="{{ "/images/logo-collapsed@2x.png" | relURL }}" width="40" alt="" />
+                    <img src="{{ .Site.BaseURL }}images/logo-collapsed@2x.png" width="40" alt="" />
                 </a>
             </div>
             <div class="mobile-menu-toggle visible-xs">
@@ -19,28 +19,32 @@
                 </a>
             </div>
         </header>
+
         <ul id="main-menu" class="main-menu">
+            {{ $lang := .Language.Lang }}
             {{ range $group := .Site.Data.categories.groups }}
                 {{ if eq $group.id "top" }}
+                    <!-- 顶级分类直接显示 -->
                     {{ range $cat := $group.categories }}
                     <li>
                         <a href="#{{ $cat.id }}" class="smooth">
                             <i class="{{ $cat.icon }}"></i>
-                            <span class="title">{{ index $cat.name $.Language.Lang }}</span>
+                            <span class="title">{{ index $cat.name $lang }}</span>
                         </a>
                     </li>
                     {{ end }}
                 {{ else }}
+                    <!-- 其他分类折叠显示 -->
                     <li>
-                        <a>
+                        <a href="#{{ $group.id }}" class="smooth has-sub">
                             <i class="{{ $group.icon }}"></i>
-                            <span class="title">{{ index $group.name $.Language.Lang }}</span>
+                            <span class="title">{{ index $group.name $lang }}</span>
                         </a>
                         <ul>
                             {{ range $cat := $group.categories }}
                             <li>
                                 <a href="#{{ $cat.id }}" class="smooth">
-                                    <span class="title">{{ index $cat.name $.Language.Lang }}</span>
+                                    <span class="title">{{ index $cat.name $lang }}</span>
                                 </a>
                             </li>
                             {{ end }}
@@ -48,12 +52,6 @@
                     </li>
                 {{ end }}
             {{ end }}
-            <li>
-                <a href="{{ "about" | relLangURL }}">
-                    <i class="linecons-heart"></i>
-                    <span class="title">{{ T "about" }}</span>
-                </a>
-            </li>
         </ul>
     </div>
 </div>

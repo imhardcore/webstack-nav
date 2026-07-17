@@ -1,6 +1,6 @@
 <div class="col-sm-3">
     <div class="xe-widget xe-conversations box2 label-info"
-         onclick="window.open('{{ .url }}', '_blank')"
+         onclick='window.open("{{ .url }}","_blank")'
          data-toggle="tooltip"
          data-placement="bottom"
          title=""
@@ -9,8 +9,8 @@
          data-site-desc="{{ .description }}">
         <div class="xe-comment-entry">
             <a class="xe-user-img">
-                <img data-src="{{ "/images/logos/" | relURL }}{{ .logo }}"
-                     src="{{ "/images/logos/default.png" | relURL }}"
+                <img data-src="{{ $.Site.BaseURL }}images/logos/{{ .logo }}"
+                     src="{{ $.Site.BaseURL }}images/logos/default.png"
                      class="lozad img-circle"
                      width="40"
                      alt="{{ .title }}">

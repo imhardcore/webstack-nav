@@ -7,31 +7,31 @@
         </li>
         <li class="dropdown hover-line language-switcher">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{{ "/images/flags/" | relURL }}{{ if eq .Language.Lang "cn" }}flag-cn.png{{ else }}flag-us.png{{ end }}" alt="flag" />
+                <img src="{{ .Site.BaseURL }}images/flags/{{ if eq .Language.Lang "cn" }}flag-cn.png{{ else }}flag-us.png{{ end }}" alt="flag" />
                 <span>{{ .Language.LanguageName }}</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu languages">
                 {{ if eq .Language.Lang "cn" }}
                 <li>
-                    <a href="{{ "/en/" | relURL }}">
-                        <img src="{{ "/images/flags/flag-us.png" | relURL }}" alt="flag-us" /> English
+                    <a href="{{ .Site.BaseURL }}en/">
+                        <img src="{{ .Site.BaseURL }}images/flags/flag-us.png" alt="flag-us" /> English
                     </a>
                 </li>
                 <li class="active">
-                    <a href="{{ "/" | relURL }}">
-                        <img src="{{ "/images/flags/flag-cn.png" | relURL }}" alt="flag-cn" /> Chinese
+                    <a href="{{ .Site.BaseURL }}">
+                        <img src="{{ .Site.BaseURL }}images/flags/flag-cn.png" alt="flag-cn" /> Chinese
                     </a>
                 </li>
                 {{ else }}
                 <li class="active">
-                    <a href="{{ "/en/" | relURL }}">
-                        <img src="{{ "/images/flags/flag-us.png" | relURL }}" alt="flag-us" /> English
+                    <a href="{{ .Site.BaseURL }}en/">
+                        <img src="{{ .Site.BaseURL }}images/flags/flag-us.png" alt="flag-us" /> English
                     </a>
                 </li>
                 <li>
-                    <a href="{{ "/" | relURL }}">
-                        <img src="{{ "/images/flags/flag-cn.png" | relURL }}" alt="flag-cn" /> Chinese
+                    <a href="{{ .Site.BaseURL }}">
+                        <img src="{{ .Site.BaseURL }}images/flags/flag-cn.png" alt="flag-cn" /> Chinese
                     </a>
                 </li>
                 {{ end }}
