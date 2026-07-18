@@ -74,16 +74,13 @@
 }
 
 /* === 侧边栏 Logo 区域 === */
-/* 方案 6: 挤压效果 - Logo Mark 位置固定不动，文字从右侧被挤压消失 */
-/* 不变式：sidebar-logo padding 左右一致，logo-mark 始终在 padding-box 左边缘
-   折叠态 sidebar 60px，border 1px，内容区 58px
-   logo-mark 约 32px，居中 = (58-32)/2 = 13px
-   → padding-left: 13px, logo-mark left: 0 → 从 sidebar 左边缘 1+13=14px，刚好居中 */
+/* 展开态：隐藏 M 图标，只显示完整文字
+   折叠态：居中显示蓝色 M，隐藏文字 */
 .sidebar-logo {
   display: flex;
   align-items: center;
   position: relative;
-  padding: 20px 10px 16px;
+  padding: 20px 20px 16px;
   flex-shrink: 0;
   height: 64px;
   overflow: hidden;
@@ -97,39 +94,30 @@
   height: 100%;
 }
 
-/* Logo Mark: 绝对定位在 padding-box 左边缘，展开/折叠位置完全不动 */
+/* 单个 M Logo Mark */
 .sidebar-logo-brand .logo-mark {
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  padding: 4px 6px;
-  border-radius: 6px;
-  background-color: var(--bg-elevated);
   line-height: 1;
   z-index: 2;
-}
-
-.logo-mark-accent {
-  color: #3b82f6;
   background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  opacity: 0;
+  max-width: 0;
+  transition: opacity 0.15s ease, max-width var(--t-medium);
 }
 
-.logo-mark-rest {
-  color: var(--text-primary);
-}
-
-/* Logo Text: 用 max-width 实现挤压效果 */
-/* logo-mark 约 32px + gap 12px = 44px（相对于 padding-box 左边缘） */
+/* Logo Text */
 .sidebar-logo-brand .logo-text {
   position: absolute;
-  left: 44px;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
@@ -139,7 +127,7 @@
   letter-spacing: -0.01em;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 130px;
+  max-width: 160px;
   opacity: 1;
   transition: max-width var(--t-medium), opacity 0.15s ease;
 }
@@ -147,6 +135,12 @@
 .logo-text-accent {
   color: #3b82f6;
   font-weight: 800;
+}
+
+/* 折叠态：显示 M，隐藏文字 */
+.sidebar.collapsed .logo-mark {
+  opacity: 1;
+  max-width: 40px;
 }
 
 .sidebar.collapsed .logo-text {
