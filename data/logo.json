@@ -1,0 +1,11 @@
+{
+  "logo": {
+    "type": "text",
+    "text": "My Navigation",
+    "accentText": "My",
+    "image": "",
+    "imageAlt": "My Navigation",
+    "imageWidth": 32,
+    "imageHeight": 32
+  }
+}

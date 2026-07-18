@@ -1,6 +1,18 @@
 <div class="toolbar-left">
     <span class="toolbar-brand">WebStack</span>
 </div>
+<nav class="toolbar-center" aria-label="常用网站">
+    <ul class="quick-links">
+        {{ range .Site.Data.quick-links.quickLinks }}
+        <li>
+            <a href="{{ .url }}" target="_blank" rel="noopener" class="quick-link" title="{{ .title }}" aria-label="{{ .title }}">
+                <i class="{{ .icon }}" aria-hidden="true"></i>
+                <span class="quick-link-text">{{ .title }}</span>
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+</nav>
 <div class="toolbar-right">
     <div class="toolbar-search-wrap">
         <button class="icon-btn search-toggle" id="search-toggle" aria-label="打开搜索" aria-expanded="false">
@@ -15,8 +27,9 @@
             </button>
         </div>
     </div>
-    <button class="icon-btn" id="theme-toggle" aria-label="切换深色/浅色模式">
-        <i class="fa fa-moon-o" aria-hidden="true"></i>
+    <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="切换深色/浅色模式" title="切换主题">
+        <i class="fa fa-moon-o theme-icon-dark" aria-hidden="true"></i>
+        <i class="fa fa-sun-o theme-icon-light" aria-hidden="true" style="display:none;"></i>
     </button>
     <a class="icon-btn" href="{{ .Site.BaseURL }}admin/" aria-label="后台管理">
         <i class="fa fa-cog" aria-hidden="true"></i>

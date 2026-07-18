@@ -18,6 +18,77 @@
   letter-spacing: -0.01em;
 }
 
+/* === 工具栏居中：常用网站入口 === */
+.toolbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.quick-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.quick-link:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.quick-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.quick-link i {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.quick-link-text {
+  line-height: 1;
+}
+
+/* 响应式：窄屏隐藏文字，只显示图标 */
+@media (max-width: 900px) {
+  .quick-link {
+    padding: 0 10px;
+  }
+  .quick-link-text {
+    display: none;
+  }
+  .quick-link i {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .quick-link:nth-child(n+4) {
+    display: none;
+  }
+}
+
 .toolbar-search-wrap {
   position: relative;
   display: flex;
@@ -210,6 +281,42 @@
 }
 
 .sidebar.collapsed .logo-text {
+  max-width: 0;
+  opacity: 0;
+}
+
+/* === 图片 Logo 样式 === */
+/* 图片规格建议：32×32px（展开态），折叠态居中显示
+   推荐格式：PNG（带透明背景）或 SVG
+   文件大小：< 10KB
+   背景：透明或与 --bg-surface 协调 */
+.sidebar-logo-brand .logo-image {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: left var(--t-medium);
+}
+
+/* 展开态：图片在左侧（已在样式中），文字在右侧 */
+.sidebar-logo-brand:has(.logo-image) .logo-text {
+  left: 42px;  /* 图片 32 + gap 10 */
+  max-width: 120px;
+}
+
+/* 折叠态：图片居中 */
+.sidebar.collapsed .sidebar-logo-brand .logo-image {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar.collapsed .sidebar-logo-brand:has(.logo-image) .logo-text {
   max-width: 0;
   opacity: 0;
 }

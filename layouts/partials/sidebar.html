@@ -1,10 +1,22 @@
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-        <div class="sidebar-logo-brand" aria-label="My Navigation">
-            <span class="logo-mark logo-mark-single" aria-hidden="true">M</span>
+        {{ $logo := .Site.Data.logo.logo }}
+        <div class="sidebar-logo-brand" aria-label="{{ $logo.text }}">
+            {{ if eq $logo.type "image" }}
+            {{ if $logo.image }}
+            <img src="{{ $logo.image }}"
+                 alt="{{ $logo.imageAlt }}"
+                 width="{{ $logo.imageWidth }}"
+                 height="{{ $logo.imageHeight }}"
+                 class="logo-image"
+                 loading="eager">
+            {{ end }}
+            {{ else }}
+            <span class="logo-mark logo-mark-single" aria-hidden="true">{{ index (split $logo.accentText "") 0 }}</span>
             <span class="logo-text">
-                <span class="logo-text-accent">My</span>&nbsp;Navigation
+                <span class="logo-text-accent">{{ $logo.accentText }}</span>{{ if and $logo.text (ne $logo.accentText $logo.text) }}&nbsp;{{ replace $logo.text $logo.accentText "" }}{{ end }}
             </span>
+            {{ end }}
         </div>
     </div>
     <div class="sidebar-divider"></div>
