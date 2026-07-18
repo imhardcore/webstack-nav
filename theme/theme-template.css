@@ -1,0 +1,52 @@
+/* ============================================
+   WebStack Nav - [主题名称] Theme
+   描述：[主题风格描述]
+   作者：[作者]
+   日期：[YYYY-MM-DD]
+
+   开发步骤：
+   1. 复制本文件到 static/css/themes/[name].css
+   2. 替换 [themename] 为你的主题名
+   3. 填写所有令牌值
+   4. 验证对比度（WCAG AA: 4.5:1 文字 / 3:1 大文字）
+   5. 在 head.html 引入 CSS
+   ============================================ */
+
+[data-theme="themename"] {
+  /* === 背景层级 === */
+  --bg-base: #000000;        /* 页面最底层 */
+  --bg-surface: #111111;     /* 卡片/侧边栏表面 */
+  --bg-elevated: #1a1a1a;    /* 悬浮元素/激活态 */
+  --bg-hover: #222222;       /* hover 反馈层 */
+
+  /* === 边框 === */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.18);
+
+  /* === 文字 === */
+  --text-primary: #ffffff;   /* 主文字，对比度 ≥ 4.5:1 */
+  --text-secondary: #aaaaaa; /* 次文字，对比度 ≥ 4.5:1 */
+  --text-tertiary: #666666;  /* 弱文字，对比度 ≥ 3:1 */
+
+  /* === 强调色 === */
+  --accent: #6366f1;         /* 主强调色 */
+  --accent-hover: #818cf8;   /* hover 态（更亮） */
+  --accent-dim: rgba(99, 102, 241, 0.12);
+  --accent-glow: rgba(99, 102, 241, 0.4);
+
+  /* === 辅助色（可选，不覆盖则用默认） === */
+  /* --success: #10b981; */
+  /* --warning: #f59e0b; */
+  /* --danger: #ef4444; */
+  /* --info: #3b82f6; */
+
+  /* === 阴影（浅色主题建议覆盖） === */
+  /* --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05); */
+  /* --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08); */
+  /* --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12); */
+  /* --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.15); */
+
+  /* === theme-color（同步到 meta 标签） === */
+  --theme-color: #000000;
+}
