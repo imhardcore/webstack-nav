@@ -11,41 +11,107 @@
   gap: var(--space-sm);
 }
 
-.search-box {
+.toolbar-brand {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.toolbar-search-wrap {
   position: relative;
-  width: 320px;
   display: flex;
   align-items: center;
 }
 
-.search-box > i {
+.toolbar-search-box {
   position: absolute;
-  left: 12px;
+  right: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  padding: 0 8px 0 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(12px);
+  transition: opacity var(--t-fast), visibility var(--t-fast), transform var(--t-fast);
+  z-index: 200;
+}
+
+.toolbar-search-box.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.toolbar-search-box > i {
+  position: static;
   color: var(--text-tertiary);
   font-size: 13px;
   pointer-events: none;
 }
 
-.search-box input {
-  width: 100%;
+.toolbar-search-box input {
+  flex: 1;
   height: 38px;
-  padding: 0 12px 0 36px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  border-radius: var(--r-sm);
+  padding: 0 8px;
+  background: transparent;
+  border: none;
   color: var(--text-primary);
   font-size: 13px;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
 }
 
-.search-box input::placeholder {
+.toolbar-search-box input::placeholder {
   color: var(--text-tertiary);
 }
 
-.search-box input:focus-visible {
+.toolbar-search-box input:focus-visible {
   outline: none;
+}
+
+.search-close {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-xs);
+  padding: 0;
+}
+
+.search-close:hover {
+  background: var(--bg-hover);
+}
+
+.search-toggle.active {
+  color: var(--accent);
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0),
+                0 0 0 2px rgba(99, 102, 241, 0.2),
+                0 0 20px rgba(99, 102, 241, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0),
+                0 0 0 2px rgba(99, 102, 241, 0.4),
+                0 0 30px rgba(99, 102, 241, 0.3);
+  }
+}
+
+.site-card.search-match {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
+  animation: neonPulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-card.search-match {
+    animation: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4);
+  }
 }
 
 .icon-btn {

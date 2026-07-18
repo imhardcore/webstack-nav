@@ -3,11 +3,9 @@
 
     let sitesData = [];
     let catalogEl = null;
-    let resultsEl = null;
 
     function initData() {
         catalogEl = document.getElementById('catalog');
-        resultsEl = document.getElementById('search-results');
 
         document.querySelectorAll('.site-card').forEach(function(card) {
             const title = card.querySelector('.card-title')?.textContent || '';
@@ -23,28 +21,30 @@
         });
     }
 
-    function renderResults(matches) {
-        if (!resultsEl) return;
-        resultsEl.innerHTML = '';
+    function clearHighlights() {
+        document.querySelectorAll('.site-card.search-match').forEach(function(card) {
+            card.classList.remove('search-match');
+        });
+        if (catalogEl) catalogEl.style.display = '';
+    }
+
+    function highlightMatches(matches) {
+        clearHighlights();
 
         if (matches.length === 0) {
-            resultsEl.innerHTML = '<p class="search-results-empty">未找到相关网站</p>';
-            resultsEl.style.display = 'block';
             return;
         }
 
-        const grid = document.createElement('div');
-        grid.className = 'cards-grid';
         matches.forEach(function(site) {
-            const clone = site.element.cloneNode(true);
-            grid.appendChild(clone);
+            site.element.classList.add('search-match');
         });
-        resultsEl.appendChild(grid);
-        resultsEl.style.display = 'block';
 
-        // 重新触发懒加载
-        if (window.lozad) {
-            lozad(resultsEl.querySelectorAll('.lozad')).observe();
+        const firstMatch = matches[0].element;
+        if (firstMatch) {
+            firstMatch.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+                block: 'center'
+            });
         }
     }
 
@@ -52,19 +52,15 @@
         const q = query.toLowerCase().trim();
 
         if (!q) {
-            resultsEl.style.display = 'none';
-            resultsEl.innerHTML = '';
-            if (catalogEl) catalogEl.style.display = '';
+            clearHighlights();
             return;
         }
-
-        if (catalogEl) catalogEl.style.display = 'none';
 
         const matches = sitesData.filter(function(s) {
             return s.title.includes(q) || s.desc.includes(q) || s.url.toLowerCase().includes(q);
         });
 
-        renderResults(matches);
+        highlightMatches(matches);
     }
 
     let debounceTimer = null;
@@ -73,21 +69,70 @@
         debounceTimer = setTimeout(function() { search(q); }, 200);
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        initData();
+    function initSearchToggle() {
+        const toggle = document.getElementById('search-toggle');
+        const searchBox = document.getElementById('toolbar-search-box');
+        const searchClose = document.getElementById('search-close');
         const input = document.getElementById('site-search');
+
+        if (!toggle || !searchBox) return;
+
+        function openSearch() {
+            searchBox.classList.add('active');
+            toggle.classList.add('active');
+            toggle.setAttribute('aria-expanded', 'true');
+            if (input) input.focus();
+        }
+
+        function closeSearch() {
+            searchBox.classList.remove('active');
+            toggle.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+            if (input) {
+                input.value = '';
+                search('');
+            }
+        }
+
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (searchBox.classList.contains('active')) {
+                closeSearch();
+            } else {
+                openSearch();
+            }
+        });
+
+        if (searchClose) {
+            searchClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeSearch();
+            });
+        }
+
         if (input) {
             input.addEventListener('input', function(e) {
                 debouncedSearch(e.target.value);
             });
-            // ESC 清空
+
             input.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    input.value = '';
-                    search('');
-                    input.blur();
+                    closeSearch();
                 }
             });
         }
+
+        document.addEventListener('click', function(e) {
+            if (searchBox.classList.contains('active') &&
+                !searchBox.contains(e.target) &&
+                !toggle.contains(e.target)) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initData();
+        initSearchToggle();
     });
 })();

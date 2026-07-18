@@ -1,11 +1,20 @@
 <div class="toolbar-left">
-    <div class="search-box">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <label for="site-search" class="sr-only">搜索网站</label>
-        <input type="search" id="site-search" placeholder="搜索网站…" autocomplete="off">
-    </div>
+    <span class="toolbar-brand">WebStack</span>
 </div>
 <div class="toolbar-right">
+    <div class="toolbar-search-wrap">
+        <button class="icon-btn search-toggle" id="search-toggle" aria-label="打开搜索" aria-expanded="false">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+        <div class="toolbar-search-box" id="toolbar-search-box">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <label for="site-search" class="sr-only">搜索网站</label>
+            <input type="search" id="site-search" placeholder="搜索网站…" autocomplete="off">
+            <button class="icon-btn search-close" id="search-close" aria-label="关闭搜索">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
     <button class="icon-btn" id="theme-toggle" aria-label="切换深色/浅色模式">
         <i class="fa fa-moon-o" aria-hidden="true"></i>
     </button>
