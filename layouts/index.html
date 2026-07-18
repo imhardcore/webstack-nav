@@ -1,6 +1,8 @@
 {{ define "main" }}
 {{ $sites := .Site.Data.sites.sites }}
 
+{{ partial "google-search.html" . }}
+
 <div id="search-results" class="search-results" style="display:none;" aria-live="polite"></div>
 
 <div id="catalog">

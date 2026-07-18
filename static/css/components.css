@@ -502,3 +502,113 @@
   .site-card:nth-child(5) { animation-delay: 0.25s; }
   .site-card:nth-child(6) { animation-delay: 0.3s; }
 }
+
+/* === Google 搜索框 === */
+.google-search-container {
+  margin-bottom: var(--space-xl);
+  width: 720px;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.google-search-form {
+  display: flex;
+  width: 100%;
+}
+
+.google-search-input-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.google-search-icon {
+  position: absolute;
+  left: 16px;
+  color: #4285f4;
+  font-size: 15px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.google-search-input-wrap input {
+  width: 100%;
+  height: 40px;
+  padding: 0 110px 0 42px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: var(--font-sans);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+}
+
+.google-search-input-wrap input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.google-search-input-wrap input:focus-visible {
+  outline: none;
+  border-color: #4285f4;
+  background: var(--bg-elevated);
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+}
+
+/* Gemini 跳转按钮：绝对定位在输入框右侧 */
+.gemini-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+}
+
+.gemini-btn:hover {
+  background: var(--bg-hover);
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+.gemini-btn:focus-visible {
+  outline: 2px solid #1a73e8;
+  outline-offset: 1px;
+}
+
+.gemini-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.gemini-btn:hover .gemini-icon {
+  filter: brightness(1.15);
+}
+
+@media (max-width: 768px) {
+  .google-search-input-wrap input {
+    padding-right: 90px;
+  }
+  .gemini-btn span {
+    display: none;
+  }
+  .gemini-btn {
+    padding: 0 8px;
+  }
+}
