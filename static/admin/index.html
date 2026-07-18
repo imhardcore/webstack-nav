@@ -8,5 +8,31 @@
 </head>
 <body>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script>
+        // 在 token 输入对话框中注入"获取 token"链接
+        function injectTokenLink() {
+            var body = document.querySelector('dialog .body');
+            if (!body || body.querySelector('.get-token-link')) return;
+
+            var inputOuter = body.querySelector('.input-outer');
+            if (!inputOuter) return;
+
+            var link = document.createElement('a');
+            link.className = 'get-token-link';
+            link.href = 'https://github.com/settings/tokens/new?scopes=repo,workflow&description=WebStack%20Nav%20CMS';
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.textContent = '如何获取 Access Token？';
+            link.style.cssText = 'display:inline-block;margin-top:12px;font-size:13px;color:#6366f1;text-decoration:none;';
+
+            inputOuter.insertAdjacentElement('afterend', link);
+        }
+
+        // Sveltia CMS 是动态渲染的，需要监听 DOM 变化
+        var observer = new MutationObserver(function() {
+            injectTokenLink();
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    </script>
 </body>
 </html>
