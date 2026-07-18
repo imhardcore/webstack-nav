@@ -5,11 +5,31 @@
       "icon": "fa fa-compass",
       "name": "导航",
       "categories": [
-        { "id": "AI", "icon": "fa fa-magic", "name": "AI" },
-        { "id": "GFW", "icon": "fa fa-globe", "name": "GFW" },
-        { "id": "SillyTavern", "icon": "fa fa-comments", "name": "SillyTavern" },
-        { "id": "设计资源", "icon": "fa fa-paint-brush", "name": "设计资源" },
-        { "id": "影视资源", "icon": "fa fa-film", "name": "影视资源" }
+        {
+          "id": "AI",
+          "icon": "fa fa-magic",
+          "name": "AI"
+        },
+        {
+          "id": "GFW",
+          "icon": "fa fa-globe",
+          "name": "遥远的破墙"
+        },
+        {
+          "id": "SillyTavern",
+          "icon": "fa fa-comments",
+          "name": "SillyTavern"
+        },
+        {
+          "id": "设计资源",
+          "icon": "fa fa-paint-brush",
+          "name": "设计资源"
+        },
+        {
+          "id": "影视资源",
+          "icon": "fa fa-film",
+          "name": "影视资源"
+        }
       ]
     }
   ]
