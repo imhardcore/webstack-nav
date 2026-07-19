@@ -3,7 +3,9 @@
    设计令牌：颜色/圆角/阴影/间距/字体/过渡
    ============================================ */
 
-:root {
+/* === 默认深色主题（经典深蓝灰） === */
+:root,
+[data-theme="default-dark"] {
   /* 背景层级（深蓝灰系） */
   --bg-base: #0b0f1a;
   --bg-surface: #111827;
@@ -43,6 +45,9 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.25);
+
+  /* theme-color（同步到 meta 标签） */
+  --theme-color: #0b0f1a;
 
   /* 间距 */
   --space-xs: 4px;

@@ -3,7 +3,7 @@
 </div>
 <nav class="toolbar-center" aria-label="常用网站">
     <ul class="quick-links">
-        {{ range .Site.Data.quick-links.quickLinks }}
+        {{ range .Site.Data.quick_links.quickLinks }}
         <li>
             <a href="{{ .url }}" target="_blank" rel="noopener" class="quick-link" title="{{ .title }}" aria-label="{{ .title }}">
                 <i class="{{ .icon }}" aria-hidden="true"></i>
@@ -27,10 +27,13 @@
             </button>
         </div>
     </div>
-    <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="切换深色/浅色模式" title="切换主题">
-        <i class="fa fa-moon-o theme-icon-dark" aria-hidden="true"></i>
-        <i class="fa fa-sun-o theme-icon-light" aria-hidden="true" style="display:none;"></i>
-    </button>
+    <div class="theme-toggle-wrap">
+        <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="切换主题" aria-haspopup="true" aria-expanded="false" title="切换主题">
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+        </button>
+        <div class="theme-menu hidden" id="theme-menu" role="menu" aria-label="主题选择">
+        </div>
+    </div>
     <a class="icon-btn" href="{{ .Site.BaseURL }}admin/" aria-label="后台管理">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </a>

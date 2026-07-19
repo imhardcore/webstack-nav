@@ -1,52 +1,164 @@
 /* ============================================
    WebStack Nav - [主题名称] Theme
    描述：[主题风格描述]
-   作者：[作者]
    日期：[YYYY-MM-DD]
 
+   主题 = 颜色方案 + 交互方案 + 动画效果
+
+   ⚠️ 硬性规则（详见 theme/README.md §4.4）：
+   1. 严禁硬编码颜色值（hex/rgb/rgba/hsl 字面量），必须用 var(--...)
+   2. 需要半透明背景时，必须用 color-mix(in srgb, var(--bg-X) X%, transparent)
+   3. 不得修改布局结构、尺寸令牌、间距令牌、字体令牌、过渡时长令牌
+   4. 不得污染 :root，只使用 [data-theme="themename"] 选择器
+   5. 必须定义 --theme-color 变量（值 = --bg-base）
+   6. 必须包含 prefers-reduced-motion: reduce 降级
+   7. 必须满足 WCAG AA 对比度（正文 ≥ 4.5:1，弱文字 ≥ 3:1）
+
    开发步骤：
-   1. 复制本文件到 static/css/themes/[name].css
-   2. 替换 [themename] 为你的主题名
-   3. 填写所有令牌值
-   4. 验证对比度（WCAG AA: 4.5:1 文字 / 3:1 大文字）
-   5. 在 head.html 引入 CSS
+   1. 复制本文件到 theme/[name]/theme.css
+   2. 替换 [themename] 为你的主题名（用于 data-theme 属性）
+   3. 实现三部分：颜色方案、交互方案、动画效果
+   4. 在 layouts/partials/head.html 用 readFile 内联引入
+   5. 在 static/js/theme.js 的 THEMES 数组中注册
+   6. 运行 hugo server 预览，切换主题验证所有组件随主题变化
+   7. 通过 theme/README.md §5.2 强制检查清单
+
+   变量语义详见 theme/README.md §4.5
    ============================================ */
 
 [data-theme="themename"] {
-  /* === 背景层级 === */
-  --bg-base: #000000;        /* 页面最底层 */
-  --bg-surface: #111111;     /* 卡片/侧边栏表面 */
-  --bg-elevated: #1a1a1a;    /* 悬浮元素/激活态 */
-  --bg-hover: #222222;       /* hover 反馈层 */
 
-  /* === 边框 === */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.10);
-  --border-strong: rgba(255, 255, 255, 0.18);
+  /* ============================================
+     第一部分：颜色方案
+     所有变量必须定义，不得遗漏
+     ============================================ */
 
-  /* === 文字 === */
-  --text-primary: #ffffff;   /* 主文字，对比度 ≥ 4.5:1 */
-  --text-secondary: #aaaaaa; /* 次文字，对比度 ≥ 4.5:1 */
-  --text-tertiary: #666666;  /* 弱文字，对比度 ≥ 3:1 */
+  /* 背景层级（亮度递增，深色主题；浅色主题则递减） */
+  --bg-base: ;       /* 页面最底层背景（body） */
+  --bg-surface: ;    /* 卡片/侧边栏/工具栏表面 */
+  --bg-elevated: ;   /* 悬浮元素/激活态 */
+  --bg-hover: ;      /* hover 反馈层 */
 
-  /* === 强调色 === */
-  --accent: #6366f1;         /* 主强调色 */
-  --accent-hover: #818cf8;   /* hover 态（更亮） */
-  --accent-dim: rgba(99, 102, 241, 0.12);
-  --accent-glow: rgba(99, 102, 241, 0.4);
+  /* 边框（由弱到强） */
+  --border-subtle: ;
+  --border-default: ;
+  --border-strong: ;
 
-  /* === 辅助色（可选，不覆盖则用默认） === */
-  /* --success: #10b981; */
-  /* --warning: #f59e0b; */
-  /* --danger: #ef4444; */
-  /* --info: #3b82f6; */
+  /* 文字层级（对比度递减）
+     --text-primary/--text-secondary 与 --bg-surface 对比度 ≥ 4.5:1
+     --text-tertiary 与 --bg-surface 对比度 ≥ 3:1 */
+  --text-primary: ;    /* 主文字：标题、正文 */
+  --text-secondary: ;  /* 次文字：描述、辅助文字 */
+  --text-tertiary: ;   /* 弱文字：占位符、禁用态 */
 
-  /* === 阴影（浅色主题建议覆盖） === */
-  /* --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05); */
-  /* --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08); */
-  /* --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12); */
-  /* --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.15); */
+  /* 强调色（用于 logo 高亮、激活态文字、强调按钮）
+     注意：此处 --accent 是「强调色」语义，不是 shadcn 的「hover 背景」
+     引用外部设计系统时，必须建立映射关系 */
+  --accent: ;
+  --accent-hover: ;
+  --accent-dim: ;      /* 强调色背景（半透明，用于激活态背景、焦点环） */
+  --accent-glow: ;     /* 强调色发光（高亮/光晕效果） */
 
-  /* === theme-color（同步到 meta 标签） === */
-  --theme-color: #000000;
+  /* 阴影 */
+  --shadow-sm: ;
+  --shadow-md: ;
+  --shadow-lg: ;
+  --shadow-glow: ;
+
+  /* theme-color（必须定义，值 = --bg-base，用于同步 meta 标签） */
+  --theme-color: ;
+}
+
+
+/* ============================================
+   第二部分：交互方案
+   作用于 [data-theme="themename"] 下的组件
+   定义 hover/active/focus 过渡效果
+
+   注意：transition 必须显式列出属性，禁止 transition: all
+   ============================================ */
+
+[data-theme="themename"] .site-card {
+  /* transition: transform var(--t-medium), box-shadow var(--t-medium), ...; */
+}
+
+[data-theme="themename"] .site-card:hover {
+  /* 卡片 hover 反馈（如上浮、边框强调、阴影增强） */
+}
+
+[data-theme="themename"] .nav-item {
+  /* transition: background var(--t-fast), color var(--t-fast); */
+}
+
+[data-theme="themename"] .nav-item:hover {
+  /* 导航项 hover（如背景变化） */
+}
+
+[data-theme="themename"] .nav-item.active {
+  /* 导航项激活态（使用 --accent-dim 背景 + --accent 文字） */
+}
+
+[data-theme="themename"] .quick-link {
+  /* transition: background var(--t-fast), color var(--t-fast); */
+}
+
+[data-theme="themename"] .quick-link:hover {
+  /* 快捷入口 hover */
+}
+
+[data-theme="themename"] .icon-btn {
+  /* transition: background var(--t-fast); */
+}
+
+[data-theme="themename"] .icon-btn:hover {
+  /* 图标按钮 hover */
+}
+
+/* 焦点态：必须有可见的焦点环 */
+[data-theme="themename"] *:focus-visible {
+  /* outline: 2px solid var(--accent); */
+  /* outline-offset: 2px; */
+}
+
+
+/* ============================================
+   第三部分：动画效果
+   定义入场动画、交互动画、微动效
+
+   ⚠️ 重要：
+   - 元素默认状态必须是可见的（opacity: 1）
+   - 不得依赖 opacity: 0 作为初始状态，防止 JS 中断时内容永久隐藏
+   - 使用 animation: both 或让动画从可见状态开始
+   ============================================ */
+
+/* 示例：卡片入场动画（从可见状态开始的微动效） */
+@keyframes themename-card-enter {
+  /* from { opacity: 0; transform: translateY(8px); } */
+  /* to { opacity: 1; transform: translateY(0); } */
+}
+
+[data-theme="themename"] .site-card {
+  /* animation: themename-card-enter var(--t-medium) both; */
+}
+
+/* 示例：hover 微动效 */
+@keyframes themename-hover-pulse {
+  /* ... */
+}
+
+
+/* ============================================
+   动效降级：尊重 prefers-reduced-motion
+   必须包含此块
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="themename"] *,
+  [data-theme="themename"] *::before,
+  [data-theme="themename"] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
