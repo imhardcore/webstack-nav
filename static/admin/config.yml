@@ -2,8 +2,6 @@ backend:
   name: github
   repo: imhardcore/webstack-nav
   branch: main
-  # 仅允许 Token 登录，避免默认 OAuth 跳转到 Netlify
-  # PKCE 对 GitHub 尚未实现（计划 Q4 2025）
   auth_methods: [token]
 
 media_folder: "static/images/logos"
@@ -14,6 +12,7 @@ display_url: "https://imhardcore.github.io/webstack-nav/"
 logo_url: "/webstack-nav/images/logo@2x.png"
 
 collections:
+  # === 网址管理 ===
   - name: "sites"
     label: "网址管理"
     label_singular: "网址"
@@ -27,51 +26,31 @@ collections:
             name: "sites"
             widget: "list"
             fields:
+              - { label: "ID", name: "id", widget: "string", hint: "唯一标识符，英文小写，如 chatgpt" }
               - { label: "网站名称", name: "title", widget: "string" }
               - { label: "网址", name: "url", widget: "string" }
-              - { label: "描述", name: "description", widget: "string" }
-              - { label: "图标文件名", name: "logo", widget: "string", default: "default.png" }
+              - { label: "描述", name: "description", widget: "text" }
+              - label: "图标"
+                name: "logo"
+                widget: "image"
+                required: false
+                hint: "上传网站图标到 static/images/logos/"
               - label: "分类"
                 name: "category"
                 widget: "select"
                 options:
-                  - "常用推荐"
-                  - "推荐"
-                  - "社区资讯"
-                  - "UED团队"
-                  - "发现产品"
-                  - "界面灵感"
-                  - "网页灵感"
-                  - "图标素材"
-                  - "LOGO设计"
-                  - "平面素材"
-                  - "UI资源"
-                  - "Sketch资源"
-                  - "字体资源"
-                  - "Mockup"
-                  - "摄影图库"
-                  - "PPT资源"
-                  - "图形创意"
-                  - "界面设计"
-                  - "交互动效"
-                  - "在线配色"
-                  - "在线工具"
-                  - "Chrome插件"
-                  - "设计规范"
-                  - "视频教程"
-                  - "设计文章"
-                  - "设计电台"
-                  - "交互设计"
+                  - "AI"
+                  - "GFW"
+                  - "SillyTavern"
+                  - "设计资源"
+                  - "影视资源"
               - label: "分类组"
                 name: "group"
                 widget: "select"
                 options:
-                  - "top"
-                  - "inspiration"
-                  - "resources"
-                  - "tools"
-                  - "tutorial"
+                  - "nav"
 
+  # === 分类管理 ===
   - name: "categories"
     label: "分类管理"
     label_singular: "分类"
@@ -85,13 +64,53 @@ collections:
             name: "groups"
             widget: "list"
             fields:
-              - { label: "组ID", name: "id", widget: "string" }
-              - { label: "图标", name: "icon", widget: "string" }
+              - { label: "组ID", name: "id", widget: "string", hint: "如 nav" }
+              - { label: "图标", name: "icon", widget: "string", hint: "FontAwesome 类名，如 fa fa-compass" }
               - { label: "名称", name: "name", widget: "string" }
               - label: "子分类"
                 name: "categories"
                 widget: "list"
                 fields:
-                  - { label: "分类ID", name: "id", widget: "string" }
-                  - { label: "图标", name: "icon", widget: "string", required: false }
+                  - { label: "分类ID", name: "id", widget: "string", hint: "与网址管理中的分类一致" }
+                  - { label: "图标", name: "icon", widget: "string", required: false, hint: "FontAwesome 类名" }
                   - { label: "名称", name: "name", widget: "string" }
+
+  # === 快捷链接 ===
+  - name: "quick_links"
+    label: "快捷链接"
+    label_singular: "快捷链接"
+    delete: false
+    files:
+      - label: "工具栏快捷链接"
+        name: "quick_links"
+        file: "data/quick_links.json"
+        fields:
+          - label: "链接列表"
+            name: "quickLinks"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string", hint: "唯一标识符" }
+              - { label: "标题", name: "title", widget: "string" }
+              - { label: "网址", name: "url", widget: "string" }
+              - { label: "图标", name: "icon", widget: "string", hint: "FontAwesome 类名，如 fa fa-github" }
+
+  # === Logo 配置 ===
+  - name: "logo"
+    label: "Logo 配置"
+    delete: false
+    files:
+      - label: "Logo 设置"
+        name: "logo"
+        file: "data/logo.json"
+        fields:
+          - label: "Logo 配置"
+            name: "logo"
+            widget: "object"
+            fields:
+              - { label: "类型", name: "type", widget: "select", options: ["text", "image"], hint: "text=文字 Logo, image=图片 Logo" }
+              - { label: "文字", name: "text", widget: "string", required: false, hint: "完整文字，如 My Navigation" }
+              - { label: "强调文字", name: "accentText", widget: "string", required: false, hint: "Logo 中高亮的部分，如 My" }
+              - { label: "图片路径", name: "image", widget: "string", required: false, hint: "Logo 图片路径" }
+              - { label: "图片替代文字", name: "imageAlt", widget: "string", required: false }
+              - { label: "图片宽度", name: "imageWidth", widget: "number", required: false, hint: "单位 px" }
+              - { label: "图片高度", name: "imageHeight", widget: "number", required: false, hint: "单位 px" }
