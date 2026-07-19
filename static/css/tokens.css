@@ -3,30 +3,30 @@
    设计令牌：颜色/圆角/阴影/间距/字体/过渡
    ============================================ */
 
-/* === 默认深色主题（经典深蓝灰） === */
+/* === 默认深色主题（Axiom Dark — Figma UI Kit） === */
 :root,
 [data-theme="default-dark"] {
-  /* 背景层级（深蓝灰系） */
-  --bg-base: #0b0f1a;
-  --bg-surface: #111827;
-  --bg-elevated: #1a2234;
-  --bg-hover: #1e293b;
+  /* 背景层级（纯黑系，来源：Axiom Dark UI Kit） */
+  --bg-base: #0A0A0A;
+  --bg-surface: #111111;
+  --bg-elevated: #1F1F1F;
+  --bg-hover: #262626;
 
-  /* 边框 */
-  --border-subtle: rgba(148, 163, 184, 0.08);
-  --border-default: rgba(148, 163, 184, 0.12);
-  --border-strong: rgba(148, 163, 184, 0.2);
+  /* 边框（来源：Axiom border/primary、border/elevated） */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.15);
+  --border-strong: rgba(200, 255, 98, 0.4);
 
-  /* 文字 */
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-tertiary: #64748b;
+  /* 文字（来源：Axiom text/primary、text/secondary、text/tertiary） */
+  --text-primary: #F5F5F5;
+  --text-secondary: #A3A3A3;
+  --text-tertiary: #595959;
 
-  /* 强调色（蓝紫渐变） */
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --accent-dim: rgba(99, 102, 241, 0.12);
-  --accent-glow: rgba(99, 102, 241, 0.4);
+  /* 强调色（来源：Axiom accent/primary — 荧光黄绿） */
+  --accent: #C8FF62;
+  --accent-hover: #B4E558;
+  --accent-dim: rgba(200, 255, 98, 0.12);
+  --accent-glow: rgba(200, 255, 98, 0.4);
 
   /* 辅助色 */
   --success: #10b981;
@@ -40,14 +40,14 @@
   --r-lg: 16px;
   --r-xl: 20px;
 
-  /* 阴影 */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.25);
+  /* 阴影（适配纯黑底，偏重 + 荧光光晕） */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 24px rgba(200, 255, 98, 0.2);
 
   /* theme-color（同步到 meta 标签） */
-  --theme-color: #0b0f1a;
+  --theme-color: #0A0A0A;
 
   /* 间距 */
   --space-xs: 4px;

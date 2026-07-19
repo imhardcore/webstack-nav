@@ -71,12 +71,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.15);
+  background: color-mix(in srgb, var(--text-tertiary) 25%, transparent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.25);
+  background: color-mix(in srgb, var(--text-tertiary) 40%, transparent);
 }
 
 /* 可访问性：减少动效 */
