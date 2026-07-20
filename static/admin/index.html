@@ -399,8 +399,8 @@
         }
 
         function updateCmsLoginLogo() {
-            // 更新标题
-            var h1 = document.querySelector('.container h1');
+            // 更新标题（.container 内或 body 直接子级）
+            var h1 = document.querySelector('.container h1') || document.querySelector('body > h1');
             if (h1) {
                 var expected = logoData.text || '我的导航';
                 if (h1.textContent.trim() !== expected) {
@@ -408,8 +408,8 @@
                 }
             }
 
-            // 更新 logo 区域（仅当 CMS 已渲染且未替换时）
-            var logoEl = document.querySelector('.container .logo');
+            // 更新 logo 区域（.container 内或 body 直接子级）
+            var logoEl = document.querySelector('.container .logo') || document.querySelector('body > .logo');
             if (logoEl && !logoEl.querySelector('.custom-logo-mark')) {
                 // 检查是否已有自定义图片
                 var existingImg = logoEl.querySelector('img[data-custom-logo]');
@@ -443,7 +443,9 @@
             'Sign In': '登录',
             'Cancel': '取消',
             'Continue': '继续',
-            'Close': '关闭'
+            'Close': '关闭',
+            'Signing in...': '登录中…',
+            'Sign in': '登录'
         };
 
         // 按长度降序排列，避免短文本先匹配
@@ -488,13 +490,8 @@
         }
 
         function translatePage() {
-            var container = document.querySelector('.container');
-            if (container) {
-                translateTextNodes(container);
-            }
-            document.querySelectorAll('dialog').forEach(function(d) {
-                translateTextNodes(d);
-            });
+            // 翻译整个 body（过渡界面元素可能不在 .container 内）
+            translateTextNodes(document.body);
         }
 
         // 隐藏"使用本地仓库"按钮（仅保留令牌登录方式）
@@ -538,16 +535,33 @@
                 preload.classList.add('hidden');
                 setTimeout(function() { preload.remove(); }, 500);
             }
-            // 移除自定义登录样式，避免影响 CMS 编辑界面
+        }
+
+        function removeCustomStyles() {
             var customStyle = document.getElementById('cms-custom-login-style');
             if (customStyle) {
-                setTimeout(function() { customStyle.remove(); }, 600);
+                customStyle.remove();
             }
         }
 
+        var loginPhaseDone = false;
+
         var checkInterval = setInterval(function() {
-            if (document.querySelector('.app-shell, .container, dialog')) {
+            var hasAppShell = document.querySelector('.app-shell');
+            var hasContainer = document.querySelector('.container');
+            var hasDialog = document.querySelector('dialog');
+
+            if (hasAppShell) {
+                // CMS 完全加载，清理所有自定义覆盖
                 clearInterval(checkInterval);
+                hidePreload();
+                removeCustomStyles();
+                return;
+            }
+
+            if ((hasContainer || hasDialog) && !loginPhaseDone) {
+                // 登录页/对话框出现，隐藏 preload 但保留样式（过渡阶段仍需美化）
+                loginPhaseDone = true;
                 hidePreload();
                 applyLogoData();
                 translatePage();
@@ -558,7 +572,8 @@
         setTimeout(function() {
             clearInterval(checkInterval);
             hidePreload();
-        }, 5000);
+            removeCustomStyles();
+        }, 8000);
 
         // ============================================
         // MutationObserver: 持续翻译和更新（防抖）
