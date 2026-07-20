@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <title>内容管理 · 我的导航</title>
-    <style>
+    <style id="cms-custom-login-style">
         /* ============================================
            我的导航 — Sveltia CMS 自定义样式
            覆盖默认蓝色调为项目暗色主题风格
@@ -181,10 +181,10 @@
             font-weight: 600 !important;
         }
 
-        /* === Loading 动画覆盖 === */
-        [class*="loading"],
-        [class*="spinner"],
-        [class*="progress"] {
+        /* === Loading 动画覆盖（仅限登录页阶段，避免影响 CMS 编辑界面） === */
+        .container [class*="loading"],
+        .container [class*="spinner"],
+        .container [class*="progress"] {
             color: #B574AB !important;
         }
 
@@ -537,6 +537,11 @@
             if (preload) {
                 preload.classList.add('hidden');
                 setTimeout(function() { preload.remove(); }, 500);
+            }
+            // 移除自定义登录样式，避免影响 CMS 编辑界面
+            var customStyle = document.getElementById('cms-custom-login-style');
+            if (customStyle) {
+                setTimeout(function() { customStyle.remove(); }, 600);
             }
         }
 
