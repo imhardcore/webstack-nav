@@ -423,7 +423,8 @@
             'Continue': '继续',
             'Close': '关闭',
             'Signing in...': '登录中…',
-            'Sign in': '登录'
+            'Sign in': '登录',
+            'Loading site data': '正在加载站点数据'
         };
 
         // 按长度降序排列，避免短文本先匹配
@@ -505,9 +506,23 @@
         }
 
         // ============================================
-        // CMS 加载完成后隐藏 Loading
+        // Loading 界面控制
         // ============================================
         function hidePreload() {
+            var preload = document.getElementById('cms-preload');
+            if (preload) {
+                preload.classList.add('hidden');
+            }
+        }
+
+        function showPreload() {
+            var preload = document.getElementById('cms-preload');
+            if (preload) {
+                preload.classList.remove('hidden');
+            }
+        }
+
+        function destroyPreload() {
             var preload = document.getElementById('cms-preload');
             if (preload) {
                 preload.classList.add('hidden');
@@ -522,18 +537,32 @@
             }
         }
 
+        function isLoadingSiteData() {
+            return document.body && document.body.textContent.indexOf('Loading site data') !== -1;
+        }
+
         var loginPhaseDone = false;
+        var dataLoadPhaseDone = false;
 
         var checkInterval = setInterval(function() {
             var hasAppShell = document.querySelector('.app-shell');
             var hasContainer = document.querySelector('.container');
             var hasDialog = document.querySelector('dialog');
+            var loadingData = isLoadingSiteData();
 
             if (hasAppShell) {
                 // CMS 完全加载，清理所有自定义覆盖
                 clearInterval(checkInterval);
-                hidePreload();
+                destroyPreload();
                 removeCustomStyles();
+                return;
+            }
+
+            if (loadingData && !dataLoadPhaseDone) {
+                // 数据加载阶段，显示 preload 覆盖默认 loading
+                dataLoadPhaseDone = true;
+                showPreload();
+                translatePage();
                 return;
             }
 
@@ -549,9 +578,9 @@
 
         setTimeout(function() {
             clearInterval(checkInterval);
-            hidePreload();
+            destroyPreload();
             removeCustomStyles();
-        }, 8000);
+        }, 12000);
 
         // ============================================
         // MutationObserver: 持续翻译和更新（防抖）
