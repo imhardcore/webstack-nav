@@ -25,6 +25,10 @@
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/layout.css">
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/components.css">
 
+<!-- DesignCode 玻璃态主题 -->
+{{ $designcode := readFile "theme/designcode/theme.css" }}
+{{ if $designcode }}<style id="theme-designcode">{{ $designcode | safeCSS }}</style>{{ end }}
+
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:url" content="{{ .Permalink }}">

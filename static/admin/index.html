@@ -1,15 +1,516 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sveltia CMS</title>
+    <meta name="color-scheme" content="dark" />
+    <title>内容管理 · 我的导航</title>
+    <style>
+        /* ============================================
+           我的导航 — Sveltia CMS 自定义样式
+           覆盖默认蓝色调为项目暗色主题风格
+           ============================================ */
+
+        /* === 基础暗色背景 === */
+        :root, :host {
+            --sui-base-hue: 0;
+        }
+
+        body {
+            background-color: #0A0A0A !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+        }
+
+        /* === Loading 界面 === */
+        .container .inner {
+            position: relative;
+        }
+
+        .container .inner::before {
+            content: '';
+            position: absolute;
+            inset: -60px;
+            border-radius: 50%;
+            background:
+                radial-gradient(ellipse 50% 40% at 30% 40%, rgba(110, 66, 145, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 45% 35% at 70% 65%, rgba(182, 116, 171, 0.10) 0%, transparent 70%);
+            z-index: -1;
+            animation: ambientPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes ambientPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* === Logo 区域 === */
+        .container .logo {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            height: 80px !important;
+            position: relative;
+        }
+
+        .container .logo img {
+            width: 48px !important;
+            height: 48px !important;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        /* 自定义文字 Logo 标识 */
+        .container .logo .custom-logo-mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #FF0080 0%, #FF8C00 25%, #FFD700 50%, #00FF7F 75%, #00BFFF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 0, 128, 0.3), 0 0 16px rgba(0, 191, 255, 0.2);
+        }
+
+        /* === 标题 === */
+        .container h1 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.02em;
+            background: linear-gradient(-19deg, #D6DEFF 0%, #B574AB 50%, #6E4291 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* === 登录按钮 === */
+        .container .buttons .button {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.07) !important;
+            background: rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.88) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.25s ease !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container .buttons .button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            padding: 1px;
+            background: linear-gradient(45deg, transparent 31%, rgba(255, 255, 255, 1) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.18;
+            transition: opacity 0.25s ease;
+        }
+
+        .container .buttons .button:hover {
+            background: rgba(255, 255, 255, 0.10) !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container .buttons .button:hover::before {
+            opacity: 0.35;
+        }
+
+        /* === Token 对话框 === */
+        dialog {
+            background: rgba(0, 0, 0, 0.85) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.07) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.07) !important;
+            color: #fff !important;
+        }
+
+        dialog .body {
+            background: transparent !important;
+        }
+
+        dialog h2,
+        dialog .header,
+        dialog [class*="title"] {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+            color: #fff !important;
+        }
+
+        dialog label,
+        dialog span {
+            color: rgba(255, 255, 255, 0.80) !important;
+        }
+
+        dialog input[type="text"],
+        dialog input {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.07) !important;
+            border-radius: 8px !important;
+            color: #fff !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+        }
+
+        dialog input[type="text"]:focus,
+        dialog input:focus {
+            border-color: #B574AB !important;
+            box-shadow: 0 0 0 2px rgba(182, 116, 171, 0.25) !important;
+            outline: none !important;
+        }
+
+        dialog .button.primary,
+        dialog button[class*="primary"] {
+            background: linear-gradient(135deg, #6E4291, #B574AB) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            color: #fff !important;
+            font-weight: 600 !important;
+        }
+
+        /* === Loading 动画覆盖 === */
+        [class*="loading"],
+        [class*="spinner"],
+        [class*="progress"] {
+            color: #B574AB !important;
+        }
+
+        /* === 自定义 Loading 骨架屏（在 CMS bundle 加载前显示）===
+           动效：RGB 彩虹声波 + RGB 流光标题 */
+
+        @keyframes cmsFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes cmsLogoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes cmsRgbFlow {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes cmsWaveBounce {
+            0%, 100% { height: 12px; }
+            50% { height: 48px; }
+        }
+
+        /* CMS 加载前的占位样式 */
+        .cms-preload {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            background: #0A0A0A;
+            z-index: 99999;
+            transition: opacity 0.4s ease;
+        }
+
+        .cms-preload.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cms-preload-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #FF0080 0%, #FF8C00 25%, #FFD700 50%, #00FF7F 75%, #00BFFF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            animation: cmsLogoFloat 2s ease-in-out infinite;
+            box-shadow: 0 12px 32px rgba(255, 0, 128, 0.4), 0 0 16px rgba(0, 191, 255, 0.3);
+        }
+
+        .cms-preload-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            object-fit: contain;
+        }
+
+        .cms-preload-title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #FF0080, #FF8C00, #FFD700, #00FF7F, #00BFFF, #8A2BE2, #FF0080);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: cmsFadeIn 0.6s ease 0.2s both, cmsRgbFlow 4s linear infinite;
+        }
+
+        /* RGB 彩虹声波 Loading */
+        .cms-preload-wave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 48px;
+            animation: cmsFadeIn 0.6s ease 0.4s both;
+        }
+
+        .cms-preload-wave span {
+            display: block;
+            width: 5px;
+            border-radius: 3px;
+            animation: cmsWaveBounce 1.2s ease-in-out infinite;
+        }
+
+        .cms-preload-wave span:nth-child(1) {
+            background: linear-gradient(180deg, #FF0080, #FF8C00);
+            box-shadow: 0 0 8px rgba(255, 0, 128, 0.5);
+            animation-delay: 0s;
+        }
+        .cms-preload-wave span:nth-child(2) {
+            background: linear-gradient(180deg, #FF8C00, #FFD700);
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+            animation-delay: 0.1s;
+        }
+        .cms-preload-wave span:nth-child(3) {
+            background: linear-gradient(180deg, #FFD700, #00FF7F);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+            animation-delay: 0.2s;
+        }
+        .cms-preload-wave span:nth-child(4) {
+            background: linear-gradient(180deg, #00FF7F, #00BFFF);
+            box-shadow: 0 0 8px rgba(0, 255, 127, 0.5);
+            animation-delay: 0.3s;
+        }
+        .cms-preload-wave span:nth-child(5) {
+            background: linear-gradient(180deg, #00BFFF, #8A2BE2);
+            box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
+            animation-delay: 0.4s;
+        }
+        .cms-preload-wave span:nth-child(6) {
+            background: linear-gradient(180deg, #8A2BE2, #FF0080);
+            box-shadow: 0 0 8px rgba(138, 43, 226, 0.5);
+            animation-delay: 0.5s;
+        }
+        .cms-preload-wave span:nth-child(7) {
+            background: linear-gradient(180deg, #FF0080, #FFD700);
+            box-shadow: 0 0 8px rgba(255, 0, 128, 0.5);
+            animation-delay: 0.6s;
+        }
+
+        /* === 动效降级 === */
+        @media (prefers-reduced-motion: reduce) {
+            .container .inner::before,
+            .cms-preload-icon,
+            .cms-preload-wave span,
+            .cms-preload-title {
+                animation: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- CMS 加载前的自定义 Loading 界面 -->
+    <div class="cms-preload" id="cms-preload">
+        <div class="cms-preload-icon" id="cms-preload-icon">导</div>
+        <div class="cms-preload-title" id="cms-preload-title">我的导航</div>
+        <div class="cms-preload-wave">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
     <script>
-        // 在 token 输入对话框中注入"获取 token"链接
+        // ============================================
+        // Logo 数据（默认值，从后台 JSON 覆盖）
+        // ============================================
+        var logoData = {
+            type: 'text',
+            text: '我的导航',
+            accentText: '我的',
+            image: '',
+            imageAlt: '我的导航',
+            imageWidth: 32,
+            imageHeight: 32
+        };
+
+        // 从 Hugo 生成的 index.json 读取 logo 数据
+        fetch('../index.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data && data.logo) {
+                    Object.assign(logoData, data.logo);
+                    applyLogoData();
+                }
+            })
+            .catch(function() {
+                // 本地预览或获取失败时使用默认值
+                applyLogoData();
+            });
+
+        function getLogoMark() {
+            if (logoData.accentText && logoData.accentText.length > 0) {
+                return logoData.accentText.charAt(0);
+            }
+            return (logoData.text || '导').charAt(0);
+        }
+
+        function applyLogoData() {
+            // 更新 preload 界面
+            var iconEl = document.getElementById('cms-preload-icon');
+            var titleEl = document.getElementById('cms-preload-title');
+
+            if (iconEl) {
+                if (logoData.type === 'image' && logoData.image) {
+                    iconEl.innerHTML = '';
+                    var img = document.createElement('img');
+                    img.src = logoData.image;
+                    img.alt = logoData.imageAlt || '';
+                    iconEl.appendChild(img);
+                } else {
+                    iconEl.textContent = getLogoMark();
+                }
+            }
+
+            if (titleEl) {
+                titleEl.textContent = logoData.text || '我的导航';
+            }
+
+            // 更新 CMS 登录页面
+            updateCmsLoginLogo();
+        }
+
+        function updateCmsLoginLogo() {
+            // 更新标题
+            var h1 = document.querySelector('.container h1');
+            if (h1) {
+                var expected = logoData.text || '我的导航';
+                if (h1.textContent.trim() !== expected) {
+                    h1.textContent = expected;
+                }
+            }
+
+            // 更新 logo 区域（仅当 CMS 已渲染且未替换时）
+            var logoEl = document.querySelector('.container .logo');
+            if (logoEl && !logoEl.querySelector('.custom-logo-mark')) {
+                // 检查是否已有自定义图片
+                var existingImg = logoEl.querySelector('img[data-custom-logo]');
+                if (!existingImg) {
+                    if (logoData.type === 'image' && logoData.image) {
+                        logoEl.innerHTML = '';
+                        var img = document.createElement('img');
+                        img.src = logoData.image;
+                        img.alt = logoData.imageAlt || '';
+                        img.setAttribute('data-custom-logo', '1');
+                        logoEl.appendChild(img);
+                    } else {
+                        logoEl.innerHTML = '';
+                        var mark = document.createElement('div');
+                        mark.className = 'custom-logo-mark';
+                        mark.textContent = getLogoMark();
+                        logoEl.appendChild(mark);
+                    }
+                }
+            }
+        }
+
+        // ============================================
+        // 界面文字翻译（英文 → 简体中文）
+        // ============================================
+        var translations = {
+            'Sign In Using Access Token': '使用访问令牌登录',
+            'Work with Local Repository': '使用本地仓库',
+            'Enter your GitHub Personal Access Token': '请输入 GitHub 个人访问令牌',
+            'GitHub Personal Access Token': 'GitHub 个人访问令牌',
+            'Sign In': '登录',
+            'Cancel': '取消',
+            'Continue': '继续',
+            'Close': '关闭'
+        };
+
+        // 按长度降序排列，避免短文本先匹配
+        var sortedKeys = Object.keys(translations).sort(function(a, b) {
+            return b.length - a.length;
+        });
+
+        function translateTextNodes(root) {
+            var walker = document.createTreeWalker(
+                root,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        var parent = node.parentElement;
+                        if (!parent) return NodeFilter.FILTER_REJECT;
+                        if (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE') return NodeFilter.FILTER_REJECT;
+                        // logo 区域和标题由后台数据直接控制，跳过翻译
+                        if (parent.closest('.logo') || parent.closest('h1')) return NodeFilter.FILTER_REJECT;
+                        if (!node.textContent.trim()) return NodeFilter.FILTER_REJECT;
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+
+            var textNode;
+            while (textNode = walker.nextNode()) {
+                var text = textNode.textContent;
+                var changed = false;
+
+                for (var i = 0; i < sortedKeys.length; i++) {
+                    var key = sortedKeys[i];
+                    if (text.indexOf(key) !== -1) {
+                        text = text.split(key).join(translations[key]);
+                        changed = true;
+                    }
+                }
+
+                if (changed) {
+                    textNode.textContent = text;
+                }
+            }
+        }
+
+        function translatePage() {
+            var container = document.querySelector('.container');
+            if (container) {
+                translateTextNodes(container);
+            }
+            document.querySelectorAll('dialog').forEach(function(d) {
+                translateTextNodes(d);
+            });
+        }
+
+        // 隐藏"使用本地仓库"按钮（仅保留令牌登录方式）
+        function hideLocalRepoButton() {
+            var buttons = document.querySelectorAll('.container .buttons .button');
+            buttons.forEach(function(btn) {
+                var text = btn.textContent.trim();
+                if (text === '使用本地仓库' || text === 'Work with Local Repository') {
+                    btn.style.display = 'none';
+                }
+            });
+        }
+
+        // ============================================
+        // Token 对话框注入帮助链接
+        // ============================================
         function injectTokenLink() {
             var body = document.querySelector('dialog .body');
             if (!body || body.querySelector('.get-token-link')) return;
@@ -19,20 +520,61 @@
 
             var link = document.createElement('a');
             link.className = 'get-token-link';
-            link.href = 'https://github.com/settings/tokens/new?scopes=repo,workflow&description=WebStack%20Nav%20CMS';
+            link.href = 'https://github.com/settings/tokens/new?scopes=repo,workflow&description=' + encodeURIComponent(logoData.text || '导航') + '%20CMS';
             link.target = '_blank';
             link.rel = 'noopener';
-            link.textContent = '如何获取 Access Token？';
-            link.style.cssText = 'display:inline-block;margin-top:12px;font-size:13px;color:#6366f1;text-decoration:none;';
+            link.textContent = '如何获取访问令牌？';
+            link.style.cssText = 'display:inline-block;margin-top:12px;font-size:13px;color:#B574AB;text-decoration:none;';
 
             inputOuter.insertAdjacentElement('afterend', link);
         }
 
-        // Sveltia CMS 是动态渲染的，需要监听 DOM 变化
+        // ============================================
+        // CMS 加载完成后隐藏 Loading
+        // ============================================
+        function hidePreload() {
+            var preload = document.getElementById('cms-preload');
+            if (preload) {
+                preload.classList.add('hidden');
+                setTimeout(function() { preload.remove(); }, 500);
+            }
+        }
+
+        var checkInterval = setInterval(function() {
+            if (document.querySelector('.app-shell, .container, dialog')) {
+                clearInterval(checkInterval);
+                hidePreload();
+                applyLogoData();
+                translatePage();
+                hideLocalRepoButton();
+            }
+        }, 100);
+
+        setTimeout(function() {
+            clearInterval(checkInterval);
+            hidePreload();
+        }, 5000);
+
+        // ============================================
+        // MutationObserver: 持续翻译和更新（防抖）
+        // ============================================
+        var pendingProcess = false;
+
         var observer = new MutationObserver(function() {
-            injectTokenLink();
+            if (pendingProcess) return;
+            pendingProcess = true;
+            requestAnimationFrame(function() {
+                pendingProcess = false;
+                translatePage();
+                updateCmsLoginLogo();
+                injectTokenLink();
+                hideLocalRepoButton();
+            });
         });
         observer.observe(document.body, { childList: true, subtree: true });
+
+        // 初始应用 logo 数据
+        applyLogoData();
     </script>
 </body>
 </html>

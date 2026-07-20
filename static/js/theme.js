@@ -3,7 +3,8 @@
 
     // 主题列表（新主题在此添加，格式：{ id: 'name', name: '显示名', icon: 'fa-xxx' }）
     var THEMES = [
-        { id: 'default-dark', name: '经典深色', icon: 'fa-cube' }
+        { id: 'default-dark', name: '经典深色', icon: 'fa-cube' },
+        { id: 'designcode', name: '玻璃态', icon: 'fa-gem' }
     ];
 
     var DEFAULT_THEME = 'default-dark';

@@ -1,0 +1,1 @@
+{{ dict "logo" .Site.Data.logo.logo | jsonify (dict "indent" "  ") }}

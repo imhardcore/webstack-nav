@@ -1,10 +1,10 @@
 {
   "logo": {
     "type": "text",
-    "text": "My Navigation",
-    "accentText": "My",
+    "text": "我的导航",
+    "accentText": "我的",
     "image": "",
-    "imageAlt": "My Navigation",
+    "imageAlt": "我的导航",
     "imageWidth": 32,
     "imageHeight": 32
   }

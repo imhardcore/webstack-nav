@@ -107,10 +107,10 @@ collections:
             name: "logo"
             widget: "object"
             fields:
-              - { label: "类型", name: "type", widget: "select", options: ["text", "image"], hint: "text=文字 Logo, image=图片 Logo" }
-              - { label: "文字", name: "text", widget: "string", required: false, hint: "完整文字，如 My Navigation" }
-              - { label: "强调文字", name: "accentText", widget: "string", required: false, hint: "Logo 中高亮的部分，如 My" }
-              - { label: "图片路径", name: "image", widget: "string", required: false, hint: "Logo 图片路径" }
+              - { label: "类型", name: "type", widget: "select", options: ["text", "image"], hint: "text=文字标识，image=图片标识" }
+              - { label: "文字", name: "text", widget: "string", required: false, hint: "完整文字，如 我的导航" }
+              - { label: "强调文字", name: "accentText", widget: "string", required: false, hint: "标识中高亮的部分，如 我的" }
+              - { label: "图片路径", name: "image", widget: "string", required: false, hint: "标识图片路径" }
               - { label: "图片替代文字", name: "imageAlt", widget: "string", required: false }
-              - { label: "图片宽度", name: "imageWidth", widget: "number", required: false, hint: "单位 px" }
-              - { label: "图片高度", name: "imageHeight", widget: "number", required: false, hint: "单位 px" }
+              - { label: "图片宽度", name: "imageWidth", widget: "number", required: false, hint: "单位像素" }
+              - { label: "图片高度", name: "imageHeight", widget: "number", required: false, hint: "单位像素" }
