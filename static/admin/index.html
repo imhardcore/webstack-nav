@@ -330,8 +330,6 @@
 <body>
     <!-- CMS 加载前的自定义 Loading 界面 -->
     <div class="cms-preload" id="cms-preload">
-        <div class="cms-preload-icon" id="cms-preload-icon">导</div>
-        <div class="cms-preload-title" id="cms-preload-title">我的导航</div>
         <div class="cms-preload-wave">
             <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
@@ -374,27 +372,7 @@
         }
 
         function applyLogoData() {
-            // 更新 preload 界面
-            var iconEl = document.getElementById('cms-preload-icon');
-            var titleEl = document.getElementById('cms-preload-title');
-
-            if (iconEl) {
-                if (logoData.type === 'image' && logoData.image) {
-                    iconEl.innerHTML = '';
-                    var img = document.createElement('img');
-                    img.src = logoData.image;
-                    img.alt = logoData.imageAlt || '';
-                    iconEl.appendChild(img);
-                } else {
-                    iconEl.textContent = getLogoMark();
-                }
-            }
-
-            if (titleEl) {
-                titleEl.textContent = logoData.text || '我的导航';
-            }
-
-            // 更新 CMS 登录页面
+            // 更新 CMS 登录页面（preload 界面仅保留声波动效，无 logo/标题）
             updateCmsLoginLogo();
         }
 
