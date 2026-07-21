@@ -4,31 +4,31 @@
       "id": "chatgpt",
       "title": "ChatGPT",
       "url": "https://chat.openai.com/",
-      "icon": "fa fa-comments"
+      "icon": "/webstack-nav/images/logos/default.png"
     },
     {
       "id": "gemini",
       "title": "Gemini",
       "url": "https://gemini.google.com/",
-      "icon": "fa fa-google"
+      "icon": "/webstack-nav/images/logos/default.png"
     },
     {
       "id": "github",
       "title": "GitHub",
       "url": "https://github.com/",
-      "icon": "fa fa-github"
+      "icon": "/webstack-nav/images/logos/default.png"
     },
     {
       "id": "youtube",
       "title": "YouTube",
       "url": "https://www.youtube.com/",
-      "icon": "fa fa-youtube"
+      "icon": "/webstack-nav/images/logos/default.png"
     },
     {
       "id": "bilibili",
       "title": "B站",
       "url": "https://www.bilibili.com/",
-      "icon": "fa fa-play-circle"
+      "icon": "/webstack-nav/images/logos/default.png"
     }
   ]
 }

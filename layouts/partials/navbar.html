@@ -1,5 +1,6 @@
 <div class="toolbar-left">
-    <span class="toolbar-brand">WebStack</span>
+    {{ $logo := .Site.Data.logo.logo }}
+    <span class="toolbar-brand">{{ $logo.text }}</span>
 </div>
 <nav class="toolbar-center" aria-label="常用网站">
     <ul class="quick-links">

@@ -3,14 +3,20 @@
    target="_blank"
    rel="noopener">
     <div class="card-header">
-        <img data-src="{{ $.Site.BaseURL }}images/logos/{{ .logo }}"
-             src="{{ $.Site.BaseURL }}images/logos/default.png"
-             class="lozad card-icon"
+        {{ $logoSrc := "" }}
+        {{ if .logo }}
+            {{ $logoSrc = .logo }}
+        {{ else }}
+            {{ $logoSrc = "/webstack-nav/images/logos/default.png" }}
+        {{ end }}
+        <img src="{{ $logoSrc }}"
+             class="card-icon"
              width="32"
              height="32"
              loading="lazy"
-             alt="{{ .title }}">
+             alt="{{ .title }}"
+             onerror="this.src='/webstack-nav/images/logos/default.png'">
         <span class="card-title">{{ .title }}</span>
     </div>
-    <p class="card-desc">{{ .description }}</p>
+    <p class="card-desc">{{ if .description }}{{ .description }}{{ else }}{{ .title }}{{ end }}</p>
 </a>

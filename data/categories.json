@@ -2,7 +2,7 @@
   "groups": [
     {
       "id": "nav",
-      "icon": "fa fa-star",
+      "icon": "/webstack-nav/images/logos/default.png",
       "name": "常用",
       "categories": []
     }
