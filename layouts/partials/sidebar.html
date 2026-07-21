@@ -26,7 +26,7 @@
                 {{ range $cat := $group.categories }}
                 <li>
                     <a href="#{{ $cat.id }}" class="nav-item smooth" data-label="{{ $cat.name }}">
-                        <i class="{{ if $cat.icon }}{{ $cat.icon }}{{ else }}{{ $group.icon }}{{ end }}" aria-hidden="true"></i>
+                        <img src="{{ if $cat.icon }}{{ $cat.icon }}{{ else }}{{ $group.icon }}{{ end }}" alt="" class="nav-icon-img" aria-hidden="true" />
                         <span class="nav-text">{{ $cat.name }}</span>
                     </a>
                 </li>

@@ -6,7 +6,7 @@
         {{ range .Site.Data.quick_links.quickLinks }}
         <li>
             <a href="{{ .url }}" target="_blank" rel="noopener" class="quick-link" title="{{ .title }}" aria-label="{{ .title }}">
-                <i class="{{ .icon }}" aria-hidden="true"></i>
+                <img src="{{ .icon }}" alt="" class="quick-link-img" aria-hidden="true" />
                 <span class="quick-link-text">{{ .title }}</span>
             </a>
         </li>

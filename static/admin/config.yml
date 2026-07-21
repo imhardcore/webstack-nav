@@ -26,15 +26,15 @@ collections:
             name: "sites"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "string", hint: "唯一标识符，英文小写，如 chatgpt" }
-              - { label: "网站名称", name: "title", widget: "string" }
-              - { label: "网址", name: "url", widget: "string" }
-              - { label: "描述", name: "description", widget: "text" }
+              - { label: "网址", name: "url", widget: "string", hint: "如 https://chat.openai.com/" }
+              - { label: "ID", name: "id", widget: "hidden", default: "" }
+              - { label: "网站名称", name: "title", widget: "string", required: false, hint: "留空则自动使用域名" }
+              - { label: "描述", name: "description", widget: "text", required: false }
               - label: "图标"
                 name: "logo"
                 widget: "image"
                 required: false
-                hint: "上传网站图标到 static/images/logos/"
+                hint: "上传网站图标"
               - label: "分类"
                 name: "category"
                 widget: "select"
@@ -44,11 +44,7 @@ collections:
                   - "SillyTavern"
                   - "设计资源"
                   - "影视资源"
-              - label: "分类组"
-                name: "group"
-                widget: "select"
-                options:
-                  - "nav"
+              - { label: "分类组", name: "group", widget: "hidden", default: "nav" }
 
   # === 分类管理 ===
   - name: "categories"
@@ -67,54 +63,23 @@ collections:
               - { label: "组ID", name: "id", widget: "hidden", default: "nav" }
               - label: "图标"
                 name: "icon"
-                widget: "select"
-                options:
-                  - { label: "导航", value: "fa fa-compass" }
-                  - { label: "首页", value: "fa fa-home" }
-                  - { label: "工具", value: "fa fa-wrench" }
-                  - { label: "收藏", value: "fa fa-star" }
-                  - { label: "全局", value: "fa fa-globe" }
-                  - { label: "文件夹", value: "fa fa-folder" }
-                  - { label: "列表", value: "fa fa-list" }
-                  - { label: "网格", value: "fa fa-th" }
-                  - { label: "标签", value: "fa fa-tags" }
-                  - { label: "书签", value: "fa fa-bookmark" }
+                widget: "image"
+                required: false
+                default: "/webstack-nav/images/logos/default.png"
+                hint: "上传组图标，默认使用系统图标"
               - { label: "名称", name: "name", widget: "string" }
               - label: "子分类"
                 name: "categories"
                 widget: "list"
                 required: false
                 fields:
-                  - { label: "分类ID", name: "id", widget: "string", hint: "与网址管理中的分类一致" }
+                  - { label: "分类ID", name: "id", widget: "hidden", default: "" }
                   - label: "图标"
                     name: "icon"
-                    widget: "select"
+                    widget: "image"
                     required: false
-                    options:
-                      - { label: "AI", value: "fa fa-magic" }
-                      - { label: "机器人", value: "fa fa-robot" }
-                      - { label: "聊天", value: "fa fa-comments" }
-                      - { label: "设计", value: "fa fa-paint-brush" }
-                      - { label: "影视", value: "fa fa-film" }
-                      - { label: "代码", value: "fa fa-code" }
-                      - { label: "书籍", value: "fa fa-book" }
-                      - { label: "音乐", value: "fa fa-music" }
-                      - { label: "游戏", value: "fa fa-gamepad" }
-                      - { label: "购物", value: "fa fa-shopping-cart" }
-                      - { label: "图片", value: "fa fa-image" }
-                      - { label: "视频", value: "fa fa-video-camera" }
-                      - { label: "新闻", value: "fa fa-newspaper" }
-                      - { label: "地图", value: "fa fa-map" }
-                      - { label: "心形", value: "fa fa-heart" }
-                      - { label: "灯泡", value: "fa fa-lightbulb-o" }
-                      - { label: "火箭", value: "fa fa-rocket" }
-                      - { label: "咖啡", value: "fa fa-coffee" }
-                      - { label: "学校", value: "fa fa-graduation-cap" }
-                      - { label: "医疗", value: "fa fa-medkit" }
-                      - { label: "金融", value: "fa fa-money" }
-                      - { label: "云", value: "fa fa-cloud" }
-                      - { label: "下载", value: "fa fa-download" }
-                      - { label: "搜索", value: "fa fa-search" }
+                    default: "/webstack-nav/images/logos/default.png"
+                    hint: "上传分类图标，默认使用系统图标"
                   - { label: "名称", name: "name", widget: "string" }
 
   # === 快捷链接 ===
@@ -131,10 +96,15 @@ collections:
             name: "quickLinks"
             widget: "list"
             fields:
-              - { label: "ID", name: "id", widget: "string", hint: "唯一标识符" }
+              - { label: "ID", name: "id", widget: "hidden", default: "" }
               - { label: "标题", name: "title", widget: "string" }
               - { label: "网址", name: "url", widget: "string" }
-              - { label: "图标", name: "icon", widget: "string", hint: "FontAwesome 类名，如 fa fa-github" }
+              - label: "图标"
+                name: "icon"
+                widget: "image"
+                required: false
+                default: "/webstack-nav/images/logos/default.png"
+                hint: "上传图标，默认使用系统图标"
 
   # === Logo 配置 ===
   - name: "logo"
