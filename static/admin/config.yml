@@ -39,12 +39,20 @@ collections:
                 name: "category"
                 widget: "select"
                 options:
-                  - "AI"
-                  - "GFW"
-                  - "SillyTavern"
-                  - "设计资源"
-                  - "影视资源"
-              - { label: "分类组", name: "group", widget: "hidden", default: "nav" }
+                  - "ai"
+                  - "social"
+                  - "news"
+                  - "shopping"
+                  - "email"
+                  - "cloud"
+                  - "office"
+                  - "music"
+                  - "video"
+                  - "online-course"
+                  - "reading"
+                  - "code-hosting"
+                  - "community"
+              - { label: "分类组", name: "group", widget: "hidden", default: "common" }
 
   # === 分类管理 ===
   - name: "categories"
@@ -60,7 +68,7 @@ collections:
             name: "groups"
             widget: "list"
             fields:
-              - { label: "组ID", name: "id", widget: "hidden", default: "nav" }
+              - { label: "组ID", name: "id", widget: "hidden", default: "" }
               - label: "图标"
                 name: "icon"
                 widget: "image"

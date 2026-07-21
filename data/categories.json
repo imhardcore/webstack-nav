@@ -1,10 +1,52 @@
 {
   "groups": [
     {
-      "id": "nav",
+      "id": "common",
       "icon": "/webstack-nav/images/logos/default.png",
       "name": "常用",
-      "categories": []
+      "categories": [
+        { "id": "ai", "icon": "/webstack-nav/images/logos/default.png", "name": "AI" },
+        { "id": "social", "icon": "/webstack-nav/images/logos/default.png", "name": "社交媒体" },
+        { "id": "news", "icon": "/webstack-nav/images/logos/default.png", "name": "新闻资讯" },
+        { "id": "shopping", "icon": "/webstack-nav/images/logos/default.png", "name": "购物" },
+        { "id": "email", "icon": "/webstack-nav/images/logos/default.png", "name": "邮箱" }
+      ]
+    },
+    {
+      "id": "tools",
+      "icon": "/webstack-nav/images/logos/default.png",
+      "name": "工具",
+      "categories": [
+        { "id": "cloud", "icon": "/webstack-nav/images/logos/default.png", "name": "云服务" },
+        { "id": "office", "icon": "/webstack-nav/images/logos/default.png", "name": "办公协作" }
+      ]
+    },
+    {
+      "id": "entertainment",
+      "icon": "/webstack-nav/images/logos/default.png",
+      "name": "娱乐",
+      "categories": [
+        { "id": "music", "icon": "/webstack-nav/images/logos/default.png", "name": "音乐" },
+        { "id": "video", "icon": "/webstack-nav/images/logos/default.png", "name": "视频" }
+      ]
+    },
+    {
+      "id": "learning",
+      "icon": "/webstack-nav/images/logos/default.png",
+      "name": "学习",
+      "categories": [
+        { "id": "online-course", "icon": "/webstack-nav/images/logos/default.png", "name": "在线课程" },
+        { "id": "reading", "icon": "/webstack-nav/images/logos/default.png", "name": "阅读" }
+      ]
+    },
+    {
+      "id": "dev",
+      "icon": "/webstack-nav/images/logos/default.png",
+      "name": "编程",
+      "categories": [
+        { "id": "code-hosting", "icon": "/webstack-nav/images/logos/default.png", "name": "代码托管" },
+        { "id": "community", "icon": "/webstack-nav/images/logos/default.png", "name": "技术社区" }
+      ]
     }
   ]
 }
